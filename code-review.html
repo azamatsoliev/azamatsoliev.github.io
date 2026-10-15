@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Review | Azamat Soliev</title>
+<meta name="description" content="Recorded code review of Travlr Getaways, the original CS 465 application, with the findings and the plan for each enhancement.">
+<meta name="author" content="Azamat Soliev">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="Code Review | Azamat Soliev">
+<meta property="og:description" content="Recorded code review of Travlr Getaways, the original CS 465 application, with the findings and the plan for each enhancement.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="bar">
+    <a class="wordmark" href="index.html">Azamat Soliev</a>
+    <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+  </div>
+  
+<nav class="rail" aria-label="Portfolio stages">
+  <ol class="rail-list">
+    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage is-current"><a href="code-review.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+  </ol>
+</nav>
+</header>
+<main id="main" tabindex="-1">
+
+<header class="page-head prose">
+  <h1>Code Review</h1>
+  <p class="lead">Before changing any code, I reviewed Travlr Getaways exactly as I had submitted it for CS 465. The recording walks through what the application did, analyzes the code against the course’s code review checklist, and sets out the planned enhancement for each of the three categories: software design and engineering, algorithms and data structures, and databases.</p>
+  <p class="note">Recorded for Milestone One, before any enhancement. The application has since been renamed Azamat School Admin.</p>
+</header>
+
+<figure class="video is-wide">
+  <div class="video-frame">
+    <iframe src="https://www.youtube-nocookie.com/embed/u06APioXnVo" title="Code review of Travlr Getaways, CS 499 Milestone One" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <figcaption>Code review of Travlr Getaways, CS 499 Milestone One. <a href="https://youtu.be/u06APioXnVo">Watch on YouTube</a>.</figcaption>
+</figure>
+
+<section class="prose" aria-labelledby="covers">
+  <h2 id="covers">What the review covers</h2>
+  <p>The review takes each category in the same order: the existing functionality, an analysis against every section of the checklist (structure, documentation, variables, arithmetic operations, loops and branches, and defensive programming), and the planned enhancement with the course outcomes it supports. Where a checklist section does not apply, the review says so rather than skipping it.</p>
+  <ul>
+    <li><strong>Software design and engineering:</strong> the application’s three parts, the trip controller, the token middleware, the travel page controller and the user model.</li>
+    <li><strong>Algorithms and data structures:</strong> how the trip controller reads data, and the absence of any logic that compares one record with another.</li>
+    <li><strong>Databases:</strong> the two Mongoose schemas and their indexes, the seed script, and the template that renders database content on the public travel page.</li>
+  </ul>
+</section>
+
+<section class="prose" aria-labelledby="findings">
+  <h2 id="findings">What became of each finding</h2>
+  <p>Every defect identified in the review was corrected in the enhancement work.</p>
+</section>
+<div class="table-wrap is-wide">
+<table class="findings">
+  <thead><tr><th scope="col">Finding in the review</th><th scope="col">What changed</th><th scope="col">Where</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Five controller functions repeating one shape: authorize, query, check, respond</th><td>Replaced by one generic controller factory that serves all five school records</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
+    <tr><th scope="row">An unreachable branch in the token check, answering HTTP 501</th><td>Header parsing rewritten; a missing or malformed token receives 401</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
+    <tr><th scope="row">The API address written into the travel page controller</th><td>Read from configuration. In the final release the travel page was retired, and the interface reads its API address from one environment file</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
+    <tr><th scope="row">Passwords hashed with PBKDF2 at 1,000 iterations</th><td>Raised to 210,000, with each existing hash upgraded at its next sign-in. Version 1.0.1 fixed the upgrade for accounts loaded from the database</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
+    <tr><th scope="row">No concept of user roles</th><td>Owner, accountant and teacher roles, with checks on every action, record and field</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
+    <tr><th scope="row">Request bodies not validated beyond the schema</th><td>Each kind of record accepts only its writable fields; request bodies carrying database operators are refused</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="databases.html">Enhancement Three</a></span></td></tr>
+    <tr><th scope="row">Every query returns all records or one record by key; nothing compares records</th><td>Scheduling conflict detection with a bounded index search, O(log n + k)</td><td><span class="link-stack"><a href="algorithms.html">Enhancement Two</a></span></td></tr>
+    <tr><th scope="row">Two unrelated schemas, single-field indexes only, no aggregation</th><td>Referenced relationships, compound indexes and five aggregation pipelines</td><td><span class="link-stack"><a href="databases.html">Enhancement Three</a></span></td></tr>
+    <tr><th scope="row">Database content rendered unescaped on the public travel page: stored cross-site scripting</th><td>Escaped in Enhancement One; the server-rendered pages were removed in the final release</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
+    <tr><th scope="row">No file headers recording purpose or authorship</th><td>A header with purpose, author, version and date on every source file</td><td><span class="link-stack"><a href="artifact.html#final">Final release</a></span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<section class="prose" aria-labelledby="script">
+  <h2 id="script">Review script</h2>
+  <p>The written script for the review, organized by section. The recording follows it closely, although the spoken wording differs in places.</p>
+  <details class="script">
+    <summary>Show the full script</summary>
+    <h3>Opening</h3>
+    <p>Hello. My name is Azamat Soliev, and this is my code review for CS 499, Milestone One.</p>
+    <p>The artifact I'm reviewing is Travlr Getaways. It's a full-stack web application I built as the final project in CS 465, Full Stack Development, last term, in July and August of 2026.</p>
+    <p>I'm using this one artifact across all three categories, which the guidelines allow.</p>
+    <p>Category One is Software Design and Engineering. Category Two is Algorithms and Data Structures. Category Three is Databases.</p>
+    <p>For each one, I'll do three things. First I'll describe what the code currently does. Then I'll analyze it against the course code review checklist. Then I'll explain what I plan to enhance, what skills that demonstrates, and which course outcomes it aligns with.</p>
+    <p>The enhancement plan I'll be referring to is the one I submitted and had approved in Module One.</p>
+    <p>Let's start with Category One, Software Design and Engineering.</p>
+    <h3>Software design and engineering: existing functionality</h3>
+    <p>Travlr Getaways is a MEAN stack application. MEAN stands for MongoDB, Express, Angular, and Node.js, which means the whole thing is written in JavaScript, from the database all the way up to the browser.</p>
+    <p>Looking at the folder structure, there are three main parts, and they're deliberately separated.</p>
+    <p><code>app_server</code> is the public-facing customer site. It's server-rendered using Handlebars templates, which means the server builds the finished HTML page and sends it to the browser.</p>
+    <p><code>app_api</code> is the REST API. Both front ends talk to it.</p>
+    <p>And <code>app_admin</code> is the Angular administrative application. That one is a single-page application, so it updates parts of the page without reloading.</p>
+    <p><code>app.js</code> is what wires everything together. It registers the static files, sets up the view engine, and mounts the route files.</p>
+    <p>This is the routes file for the API. Here's the part that matters.</p>
+    <p>The GET routes are open. Anyone can read the trips. But POST, PUT, and DELETE all have <code>authenticateJWT</code> in front of them. That's a middleware function, which means it runs before the actual request handler and can stop the request. In this case it checks for a valid login token.</p>
+    <p>So authentication is JWT-based. JWT stands for JSON Web Token. When an administrator logs in, the server gives them a signed token, and their browser sends it back on every request that changes data. Passwords are hashed and salted before storage, never kept in plain text.</p>
+    <p>So that's what the application does today. A public browsing site, a secured administrative interface, a shared API between them, and all of it operating on a single entity, which is a trip.</p>
+    <h3>Software design and engineering: code analysis</h3>
+    <p>Now I'll analyze this code against the course code review checklist. I'll go through the sections in order, and where a section doesn't apply to this project, I'll say so rather than skipping it.</p>
+    <p>Starting with Structure.</p>
+    <p>This is the trips controller. There are five functions in here: <code>tripsList</code>, <code>tripsFindByCode</code>, <code>tripsAddTrip</code>, <code>tripsUpdateTrip</code>, and <code>tripsDeleteTrip</code>.</p>
+    <p>And if you watch them go past, every single one has the same shape. Authorize the request. Run a query. Check whether the result is empty. Return a status code.</p>
+    <p>The checklist asks whether there are blocks of repeated code that could be condensed into a single procedure. There are, and this is the clearest example in the whole project. Five functions repeating one pattern.</p>
+    <p>Here's a genuine defect. This is in the JWT middleware.</p>
+    <p>On this line, the code takes the authorization header and splits it on a space.</p>
+    <p>Then on line 17, it checks whether the result has fewer than one element.</p>
+    <p>That check can never be true. Splitting a string always returns at least one element, even if the string is empty. So this entire branch is unreachable code. It can never run.</p>
+    <p>And the checklist asks directly about unreachable code.</p>
+    <p>There's a second problem on line 19. When it does return, it returns HTTP 501. That status code means &quot;Not Implemented.&quot; The correct code for a missing or malformed token is 401 Unauthorized, which is actually what the surrounding checks return.</p>
+    <p>So this branch is both unreachable and returning the wrong status code.</p>
+    <p>One more structural finding. Line 4.</p>
+    <p>The API address is written directly into the code as a string, pointing at localhost on port 3000.</p>
+    <p>The checklist asks whether symbolics are used rather than magic number constants or string constants. Here they aren't. This value should come from configuration. As written, deploying this anywhere would mean editing the source code by hand.</p>
+    <p>That's Structure. Moving on to Documentation.</p>
+    <p>The comments that exist are accurate and consistent with the code, which is what the checklist asks. But there are no file headers showing intent, decision, or authorship, and the commenting gets thinner in the later files. That's something I'll clean up for the final portfolio.</p>
+    <p>Next, Variables.</p>
+    <p>I want to be honest about what this code does well, not just what's wrong with it. The variable and function naming is consistent and meaningful throughout. <code>tripsList</code>, <code>tripsFindByCode</code>, <code>authenticateJWT</code> — you can tell what each one does from its name. There are no redundant or unused variables that I found. This section is fine.</p>
+    <p>Next, Arithmetic Operations.</p>
+    <p>This section does not apply to this artifact. There's no floating-point comparison anywhere, no division, no rounding, and no arithmetic on numbers of very different magnitudes. I'm stating that explicitly rather than passing over it.</p>
+    <p>Next, Loops and Branches.</p>
+    <p>The branching is generally complete and correctly nested. The unreachable branch I showed you a moment ago is the one exception.</p>
+    <p>And finally, Defensive Programming.</p>
+    <p>Some of this section doesn't apply either. The questions about pointers and about memory allocation and deallocation are not relevant here, because JavaScript is garbage collected. There's no manual memory management to get wrong.</p>
+    <p>But the question that does apply is whether imported data and input arguments are tested for validity and completeness. Beyond what the Mongoose schema enforces, request bodies aren't validated.</p>
+    <p>There's a security finding here too. Line 22.</p>
+    <p>Passwords are hashed using PBKDF2 with SHA-512, which is a reasonable choice. But look at the iteration count. One thousand.</p>
+    <p>The iteration count is what makes password hashing slow on purpose, so that an attacker who steals the database can't test guesses quickly. One thousand iterations is far below current guidance for this algorithm. So the approach is right, but the work factor is much too low.</p>
+    <p>And here's the most important finding in this category.</p>
+    <p>This is the entire user schema. Email. Name. Hash. Salt. That's it.</p>
+    <p>There is no role field. Nowhere in this application does a user have a type.</p>
+    <p>So the application has exactly one kind of authenticated user, and a single binary permission state. You're either logged in, or you're not. There's no way to say that this person can do one thing and that person can do another.</p>
+    <p>That is the central design limitation of this artifact, and it's what my enhancement addresses.</p>
+    <p>So to summarize my findings for Category One. Repeated controller logic across five functions. An unreachable branch returning the wrong status code. A hardcoded configuration value. A password work factor well below current guidance. And no concept of user roles at all.</p>
+    <h3>Software design and engineering: planned enhancement</h3>
+    <p>Now, my planned enhancement for this category, which was approved in my Module One plan.</p>
+    <p>First, the reason behind it, because it isn't just an exercise. A teacher I know recently opened a small language school, and she runs everything manually right now. Student records, scheduling, attendance, tuition. This enhancement repurposes Travlr into software she could actually use to run that school.</p>
+    <p>So the plan does this.</p>
+    <p>It adds five new entities: Student, Teacher, ClassSession, Payment, and Attendance.</p>
+    <p>Instead of writing that repeated controller shape five more times, I'm building one generic controller factory. It takes a data model plus a configuration describing which role each action needs, and it produces all four handlers for that model. Same idea on the Angular side: one configuration-driven component instead of five nearly identical ones. That pattern is what makes five entities achievable inside a single module.</p>
+    <p>Then it adds three roles: owner, accountant, and teacher. Owner inherits everything the other two can do. The role is stored on the user record and included in the signed token. New registrations default to teacher, and only an existing owner can promote somebody.</p>
+    <p>And here's the part I want to highlight, because I found it while writing the plan rather than after building it.</p>
+    <p>Checking the role is not enough. If a teacher passes a role check, they'd then receive every teacher's class sessions and every student record, because the role condition is satisfied even though the records don't belong to them. That's called horizontal privilege escalation.</p>
+    <p>So the configuration also carries a record-level scope rule. For a teacher, every list query is constrained to records they own, and ownership is verified on the specific record before any update or delete.</p>
+    <p>Related to that: when a record exists but isn't yours, the response is 403 Forbidden, not 404 Not Found. That's deliberate. A 404 would confirm to an unauthorized caller that the record exists.</p>
+    <p>Deletion also becomes a soft delete. Removing a student marks the record inactive instead of erasing it, so their attendance and payment history isn't orphaned.</p>
+    <p>And the two defects I found earlier get fixed here: the iteration count goes up, and the hardcoded URL moves into configuration.</p>
+    <p>The specific skills this demonstrates are designing a scalable architecture instead of duplicating logic, building a permission model that combines role-level and record-level checks, identifying a security gap during design rather than after implementation, and choosing status codes that don't leak information.</p>
+    <p>This aligns with Course Outcome One, building collaborative environments that support organizational decision-making, because the owner, the accountant, and the teacher each get a purpose-built view for their own decisions instead of one undifferentiated interface.</p>
+    <p>It aligns with Course Outcome Four, using well-founded and innovative techniques to deliver value, because the generalized configuration-driven pattern is what makes a five-entity platform deliverable in the time available.</p>
+    <p>And it aligns with Course Outcome Five, developing a security mindset that anticipates adversarial exploits, because the access boundaries are enforced by design — through role inheritance, record-level ownership scoping, a restricted registration path, and status codes chosen so they don't reveal what exists.</p>
+    <p>That completes Category One. Next is Category Two, Algorithms and Data Structures.</p>
+    <h3>Algorithms and data structures: existing functionality</h3>
+    <p>This is Category Two, Algorithms and Data Structures.</p>
+    <p>The starting file is <code>app_api/controllers/trips.js</code>. That's the same controller file I looked at in Category One, but this time I'm looking at what it does with data, rather than how it's organized.</p>
+    <p>Line 11. This is <code>tripsList</code>.</p>
+    <p>It calls <code>find</code> with empty braces. Empty braces mean no filter at all. So this returns every single document in the collection, on every request.</p>
+    <p>And the comment on that line says exactly that. &quot;No filter, return all records.&quot; It's an honest comment. It's also the finding.</p>
+    <p>Line 37. This is <code>tripsFindByCode</code>. It matches one trip by its code. That field is indexed, so this one is efficient, but it's still just a single-key lookup.</p>
+    <p>And that's the complete data-access story in this application. Return everything, or return one record by exact key.</p>
+    <h3>Algorithms and data structures: code analysis</h3>
+    <p>Analyzing this against the checklist, the significant findings here are about efficiency, and about what's missing rather than what's broken.</p>
+    <p>Starting with Structure and efficiency.</p>
+    <p>There is no sorting anywhere in this file. No filtering. No pagination.</p>
+    <p>And here's the bigger point. Nowhere in this entire codebase does any piece of logic compare one record against another record. Every operation touches one document, or all of them. There's no relational reasoning, and no reasoning about time at all.</p>
+    <p>Back to line 11. The cost of this query grows in direct proportion to the size of the collection. In Big O notation, that's O of n, where n is the number of documents.</p>
+    <p>Big O notation is just a way of describing how much slower something gets as the data grows. O of n means if you double the data, you double the work.</p>
+    <p>Right now the database has six seed records, so this is invisible. With fifty thousand trips, this would return fifty thousand documents across the network every time somebody loads the page.</p>
+    <p>The checklist asks whether storage use is efficient. Returning an entire collection with no pagination is the clearest place in this project where the answer is no.</p>
+    <p>Next, Documentation and Variables.</p>
+    <p>Both are adequate in this file. The comments accurately describe what each function does, and the naming is clear.</p>
+    <p>Next, Arithmetic Operations.</p>
+    <p>Not applicable again. There's no arithmetic in this file at all.</p>
+    <p>Next, Loops and Branches.</p>
+    <p>The branching here is simple and correct. Check whether the result came back empty, return a 404 if it did, otherwise return the data. There's no deep nesting and no missing case.</p>
+    <p>And finally, Defensive Programming.</p>
+    <p>The relevant question is whether imported data and input arguments are tested for validity. The trip code comes straight from the URL into the query with no validation.</p>
+    <p>And I'd argue an unbounded response size is itself a defensive problem. There is no ceiling on how much data a single request can pull back.</p>
+    <p>So this category is unusual. There isn't really an algorithmic weakness to fix here, because there's almost no algorithm to begin with. My enhancement introduces one.</p>
+    <h3>Algorithms and data structures: planned enhancement</h3>
+    <p>My enhancement for this category is class scheduling conflict detection. This is the first operation in the platform that has to compare records against each other.</p>
+    <p>The problem it solves is simple. Stop the same teacher being booked for two overlapping class sessions.</p>
+    <p>The check runs on the server, on both create and update, and it's authoritative. There's no client-side pre-check, because a client-side check can be bypassed, which makes it a convenience rather than a control.</p>
+    <p>Now, the naive way to do this would be to fetch every session that teacher has ever taught and compare each one to the proposed time. That costs O of n, where n is their total history. It grows without any limit as that history builds up.</p>
+    <p>And here's the part I want to spend a moment on, because this was the real design decision.</p>
+    <p>The obvious fix is to add a compound index on teacher and start time, then query for sessions where the start time is before the proposed end, and the end time is after the proposed start. That's logically correct.</p>
+    <p>But it doesn't actually help. The index can serve the start time condition. It cannot serve the end time condition. So the database would scan every session that teacher has ever taught up to the proposed end time, and then filter the rest in memory.</p>
+    <p>That's still O of n. The optimization would be completely illusory.</p>
+    <p>The actual fix is to give the query a lower bound as well as an upper one.</p>
+    <p>The schema enforces a maximum session length of four hours. So any session that could overlap the proposed window must start no earlier than the proposed start, minus four hours. Once I constrain the start time to that narrow window, the index can seek straight into it.</p>
+    <p>Locating that range costs O of log n, which grows very slowly. And the number of candidates it returns is bounded by however many sessions one teacher can physically fit into a four-hour window, no matter how long their history is.</p>
+    <p>So the total cost is O of log n, plus k. And that's a real improvement, not the same cost rewritten.</p>
+    <p>There's a trade-off, and I want to state it openly rather than present the optimization as free. The bounded query is only correct because the maximum session duration is enforced on every write. A session longer than four hours could start before my lower bound and get missed. So I'm trading full generality for a guaranteed cost ceiling, and paying for it with a schema constraint.</p>
+    <p>One last detail. When there's a genuine conflict, the request is rejected with HTTP 409 Conflict, not 400. I chose that specifically, because 409 means the request conflicts with the current state of the schedule, whereas 400 would suggest the request itself was malformed.</p>
+    <p>The skills this demonstrates are stating the cost of an existing approach precisely, recognizing that an apparently optimized query can keep the original cost when the index can't serve every condition, and naming what a performance improvement actually costs.</p>
+    <p>This aligns with Course Outcome Three, evaluating computing solutions using algorithmic principles while managing trade-offs. I compare two approaches by stated time complexity and I name the constraint that makes the faster one correct.</p>
+    <p>And it aligns with Course Outcome Four, using well-founded techniques, because compound indexing with a bounded range query is a standard industry technique, and its correctness gets verified by boundary-case tests rather than assumed.</p>
+    <p>That completes Category Two. Finally, Category Three, Databases.</p>
+    <h3>Databases: existing functionality</h3>
+    <p>This is Category Three, Databases.</p>
+    <p>The starting files are the two Mongoose schemas in the models folder.</p>
+    <p>Quick context first. MongoDB is a document database, which means it stores flexible documents rather than fixed rows and columns. It doesn't enforce a structure by itself. Mongoose is the ODM, the Object Data Modeling library, that imposes a defined schema in the application code instead.</p>
+    <p>This is the Trip schema. Code. Name. Length. Start date. Resort. Price per person. Image. And description.</p>
+    <p>Two of these fields are indexed: code and name. Both are single-field indexes.</p>
+    <p>And this is the User schema. Email, name, hash, salt. It's used only for administrator login.</p>
+    <p>That's it. Two schemas, two single-field indexes, and that's the entire data layer as it exists today.</p>
+    <h3>Databases: code analysis</h3>
+    <p>Analyzing the data layer against the checklist, the findings are about what the schema design doesn't do, plus one security issue in how database content reaches the user.</p>
+    <p>Starting with Structure.</p>
+    <p>There is no relationship of any kind between these two schemas. Trip and User have no reference to each other. Nothing joins. Nothing references anything.</p>
+    <p>The aggregation framework is never used anywhere in this artifact. Aggregation is MongoDB's way of combining and summarizing data across collections. Every query here is a simple find on one collection.</p>
+    <p>And the only indexes are the two single-field ones I showed you. There's no compound index anywhere, meaning no index that covers more than one field together.</p>
+    <p>One smaller finding. In the seed script, the data file is read using a relative path. That means the script only works if you run it from exactly the right directory. The checklist asks whether files are checked for existence before being accessed, and here they aren't.</p>
+    <p>Next, Documentation.</p>
+    <p>The schemas are readable and the field names explain themselves. No complaints there.</p>
+    <p>Next, Arithmetic Operations. Not applicable. There's no arithmetic in the data layer.</p>
+    <p>And now Defensive Programming, which is where the important finding is.</p>
+    <p>This is the Handlebars template that renders the public travel page. I want you to look at three lines together, because the contrast is right here in the same file.</p>
+    <p>Line 24. Two curly braces around <code>this.code</code>.</p>
+    <p>Line 25. Two curly braces around <code>this.name</code>.</p>
+    <p>Line 26. Three curly braces around <code>this.description</code>.</p>
+    <p>In Handlebars, two braces escape the content. That means whatever is in there gets displayed as plain text, safely.</p>
+    <p>Three braces mean do not escape it. The content gets inserted into the page as live HTML.</p>
+    <p>And that content comes directly out of the database.</p>
+    <p>So anything stored in a trip description gets rendered as code in the visitor's browser. That's a stored cross-site scripting vulnerability. Stored, because the malicious content lives in the database and gets served to everyone who loads the page.</p>
+    <p>Right now, creating a trip requires authentication, so the exposure is limited. But in the platform I'm building, teachers will be creating records with free-text fields. That turns this from a theoretical problem into a directly exploitable one.</p>
+    <p>The checklist asks whether imported data is tested for validity and completeness. Database content reaching a template unescaped is exactly that question, and here the answer is no.</p>
+    <p>One last item on security. The repository contains a <code>.env</code> file holding the token signing secret. It's correctly excluded from version control by the gitignore file, and I've moved it out of view for this recording. I'm mentioning it because handling of secrets is part of a security review even when it's being done correctly.</p>
+    <p>So to summarize. The data layer is functional, but it's flat. Two unrelated schemas. No aggregation. Only single-field indexes. And database content reaching the page without escaping.</p>
+    <h3>Databases: planned enhancement</h3>
+    <p>My enhancement for this category introduces three things that don't exist in the original: cross-collection aggregation, a real relationship between collections, and a compound index defined to serve a specific query.</p>
+    <p>The aggregation produces three reports for the owner and the accountant. Attendance rate per class session. Revenue collected per month. And an attendance-adjusted outstanding balance per student.</p>
+    <p>That last one needs the billing model defined, and I defined it in the plan rather than leaving it for later.</p>
+    <p>The school charges per lesson attended. So the rate is stored on the ClassSession, not on the Student, which lets different class types be priced differently. A student's balance is the sum of the rates of the sessions they actually attended, minus what they've paid.</p>
+    <p>That matters because it makes attendance genuinely drive the financial number, instead of being reported next to it. And it's the reason the pipeline has to join across three collections rather than two.</p>
+    <p>There are two schema decisions I committed to, and I want to justify both.</p>
+    <p>First, Attendance and Payment records reference their Student and ClassSession by identifier, rather than embedding that data inside them. These records are numerous, they're created continuously over time, and they get queried independently of the student they belong to. All three of those favor referencing over embedding for this particular relationship.</p>
+    <p>Second, the compound index on teacher and start time gets defined here. It exists specifically to serve the bounded query I described in Category Two. So this is a database design decision that directly enables an algorithmic improvement somewhere else in the same platform, rather than an isolated indexing choice.</p>
+    <p>And the reporting interface is matched to whoever is reading it, rather than one generic table for everybody.</p>
+    <p>The accountant sees monthly revenue as a tabular breakdown with per-student rows, because that output feeds bookkeeping and has to reconcile line by line.</p>
+    <p>The owner sees attendance rate paired against revenue for the same period, because the owner's actual question is whether a class is worth continuing to run, and neither of those figures answers that alone.</p>
+    <p>And a teacher sees only their own roster and attendance completion, with no financial data at all, because it isn't relevant to their decisions and it's restricted from their role by the scope rules from Category One.</p>
+    <p>Choosing a different format for each of those readers is a communication decision as much as a technical one.</p>
+    <p>The unescaped template output I showed you gets corrected as part of this work as well.</p>
+    <p>This aligns with Course Outcome One, supporting organizational decision-making, because the reporting is built on actual recorded activity rather than estimates.</p>
+    <p>It aligns with Course Outcome Two, delivering communications appropriately adapted to specific audiences, because each report is deliberately formatted for the person reading it and the decision they're making.</p>
+    <p>And it aligns with Course Outcome Three, managing trade-offs in design choices, because both schema decisions — referencing versus embedding, and the compound index — are justified on stated criteria rather than convention.</p>
+    <h3>Closing</h3>
+    <p>That completes my code review for all three categories.</p>
+    <p>To summarize. One artifact, Travlr Getaways, enhanced across software design and engineering, algorithms and data structures, and databases.</p>
+    <p>Across the three categories, all five course outcomes are covered. Category One addresses outcomes one, four, and five. Category Two addresses three and four. Category Three addresses one, two, and three.</p>
+    <p>The defects I identified along the way — the unreachable branch, the hardcoded URL, the low iteration count, and the unescaped template output — all get corrected as part of the enhancement work. Cleaning up comments and formatting is separate from that, and happens as portfolio polish.</p>
+    <p>Enhancement One is submitted in Module Three, Enhancement Two in Module Four, and Enhancement Three in Module Five.</p>
+    <p>Thank you for watching.</p>
+  </details>
+</section>
+
+<nav class="pager" aria-label="Previous and next pages">
+  <a class="pager-prev" href="index.html"><span class="pager-label">Previous</span><span class="pager-title">Professional Self-Assessment</span></a>
+  <a class="pager-next" href="artifact.html"><span class="pager-label">Next</span><span class="pager-title">The Artifact: Original and Enhanced</span></a>
+</nav>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <p class="footer-name">Azamat Soliev</p>
+    <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
+    <ul class="contact-list">
+      <li><a href="mailto:azamatthefirst1@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.8.3 7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>azamatthefirst1@gmail.com</span></a></li>
+      <li><a href="https://www.linkedin.com/in/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Zm2.3 6.9V18h2.6V9.9H6.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.3 4V18H14v-4.3c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3V18h2.6v-4.7c0-2.3-.5-4-3.2-4-1.3 0-2.1.7-2.5 1.4V9.9h-2.5Z" fill="currentColor"/></svg><span>linkedin.com/in/azamatsoliev</span></a></li>
+      <li><a href="https://github.com/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.4.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg><span>github.com/azamatsoliev</span></a></li>
+    </ul>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

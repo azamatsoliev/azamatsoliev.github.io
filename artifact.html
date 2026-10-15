@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Artifact: Original and Enhanced | Azamat Soliev</title>
+<meta name="description" content="Travlr Getaways, as built for CS 465, and Azamat School Admin 1.0.1, the enhanced school management platform, side by side.">
+<meta name="author" content="Azamat Soliev">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="The Artifact: Original and Enhanced | Azamat Soliev">
+<meta property="og:description" content="Travlr Getaways, as built for CS 465, and Azamat School Admin 1.0.1, the enhanced school management platform, side by side.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="bar">
+    <a class="wordmark" href="index.html">Azamat Soliev</a>
+    <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+  </div>
+  
+<nav class="rail" aria-label="Portfolio stages">
+  <ol class="rail-list">
+    <li class="rail-stage is-current"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage is-current"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+  </ol>
+</nav>
+</header>
+<main id="main" tabindex="-1">
+
+<header class="page-head prose">
+  <h1>The Artifact: Original and Enhanced</h1>
+  <p class="lead">Every page of this portfolio shows the same application at a different stage. It began as Travlr Getaways, the travel booking site I built for CS 465, Full Stack Development, in July and August of 2026. Across three enhancements it became Azamat School Admin, a management platform for a small language school, released as version 1.0.0 in October 2026 and patched as 1.0.1.</p>
+  
+<nav class="toc" aria-label="On this page">
+  <p class="toc-title">On this page</p>
+  <ul><li><a href="#original">Original: Travlr Getaways</a></li><li><a href="#final">Enhanced: Azamat School Admin 1.0.1</a></li><li><a href="#side-by-side">Side by side</a></li><li><a href="#stages">Every stage in the repository</a></li></ul>
+</nav>
+</header>
+
+<section class="prose" aria-labelledby="original">
+  <h2 id="original">Original: Travlr Getaways</h2>
+  <p>A MEAN stack application with three parts sharing one backend: a public travel site rendered on the server with Handlebars templates, a REST API, and an Angular single-page application for administrators. It managed one kind of record, a trip, and one kind of user, an administrator who was either signed in or not. The public pages were built on a website template supplied with the course.</p>
+  <p class="links"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/cs465-original">Browse the original code on GitHub</a> <a href="assets/downloads/06_Original_Code_Travlr_Getaways_Soliev.zip" download>Download the original code</a> <span class="file-meta">ZIP, 1.6 MB</span></p>
+</section>
+<div class="shot-group" data-shot-group>
+<div class="shot-pair" data-shot-group>
+<figure class="shot ">
+  <a class="shot-link" href="assets/images/screens/original-travel-page.webp"><img src="assets/images/screens/original-travel-page.webp" alt="The original Travlr Getaways travel page, listing reef diving trips with photographs." width="1280" height="800" loading="lazy" decoding="async"></a>
+  <figcaption>The public travel page, rendered on the server from the trips in the database.</figcaption>
+</figure>
+<figure class="shot ">
+  <a class="shot-link" href="assets/images/screens/original-admin-trips.webp"><img src="assets/images/screens/original-admin-trips.webp" alt="The original administrator screen, showing trips as cards with resort, length and price." width="1280" height="800" loading="lazy" decoding="async"></a>
+  <figcaption>The administrator screen, built in Angular, listing the same trips.</figcaption>
+</figure></div>
+<p class="shot-note prose">Captured from the CS 465 code, with the course’s sample trip data.</p>
+</div>
+
+<section class="prose" aria-labelledby="final">
+  <h2 id="final">Enhanced: Azamat School Admin 1.0.1</h2>
+  <p>A role-based platform for running a small language school: students, teachers, class sessions, payments and attendance, with reports for the owner, the accountant and each teacher. The travel site, its trip API and every travel image are gone. What remains is the REST API and a rebuilt Angular interface, tested by 214 backend tests, 69 interface tests and five end-to-end browser tests on every change.</p>
+  <p class="links"><a href="https://github.com/azamatsoliev/azamat-school-admin">Repository on GitHub</a> <a href="https://github.com/azamatsoliev/azamat-school-admin/tree/v1.0.1">Browse version 1.0.1</a> <a href="assets/downloads/07_Enhanced_Code_Azamat_School_Admin_v1.0.1_Soliev.zip" download>Download the enhanced code</a> <span class="file-meta">ZIP, 335 KB</span></p>
+</section>
+<div class="shot-group" data-shot-group>
+<div class="shot-pair" data-shot-group>
+<figure class="shot shot-final " data-final-shot>
+  <a class="shot-link" href="assets/images/screens/final/02-owner-home.png"><img src="assets/images/screens/final/02-owner-home.png" alt="Azamat School Admin home page for the owner, with a section for each kind of record and for reports." width="1280" height="800" decoding="async"></a>
+  <figcaption>The owner’s home page: every section of the school. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
+</figure>
+<figure class="shot shot-final " data-final-shot>
+  <a class="shot-link" href="assets/images/screens/final/05-accountant-balances.png"><img src="assets/images/screens/final/05-accountant-balances.png" alt="The accountant’s outstanding balances report, listing students with amounts billed, paid and outstanding." width="1280" height="800" decoding="async"></a>
+  <figcaption>The accountant’s balances report, computed inside MongoDB in whole cents. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
+</figure></div>
+<p class="shot-note prose">Screenshots taken by the end-to-end tests, running against a real MongoDB server loaded with the demo school.</p>
+</div>
+
+<section class="prose" aria-labelledby="side-by-side">
+  <h2 id="side-by-side">Side by side</h2>
+</section>
+<div class="table-wrap is-wide">
+<table class="compare">
+  <thead><tr><th scope="col"><span class="visually-hidden">Aspect</span></th><th scope="col">Original (CS 465)</th><th scope="col">Enhanced (1.0.1)</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Purpose</th><td>Travel booking site with an administrator screen</td><td>Management platform for a small language school</td></tr>
+    <tr><th scope="row">Records</th><td>Trips</td><td>Students, teachers, class sessions, payments and attendance</td></tr>
+    <tr><th scope="row">Users</th><td>One kind of administrator, signed in or not</td><td>Owner, accountant and teacher, each with a scoped view</td></tr>
+    <tr><th scope="row">Accounts</th><td>Anyone could register through the API</td><td>Created by an owner; the first owner from the command line</td></tr>
+    <tr><th scope="row">Passwords</th><td>PBKDF2 at 1,000 iterations</td><td>PBKDF2 at 210,000 iterations, upgraded at sign-in; sign-in attempts rate-limited</td></tr>
+    <tr><th scope="row">Data access</th><td>Every record, or one record by key</td><td>Scoped queries, a bounded conflict search and five aggregation pipelines</td></tr>
+    <tr><th scope="row">Interfaces</th><td>Server-rendered travel pages and an Angular administrator screen</td><td>REST API and a rebuilt Angular interface</td></tr>
+    <tr><th scope="row">Automated tests</th><td>The specs Angular generates with each component; none for the API</td><td>214 backend tests, 69 interface tests and 5 end-to-end tests, run on every change</td></tr>
+    <tr><th scope="row">Documentation</th><td>Code comments</td><td>README, architecture, security and testing guides, and a changelog</td></tr>
+  </tbody>
+</table>
+</div>
+
+<section class="prose" aria-labelledby="stages">
+  <h2 id="stages">Every stage in the repository</h2>
+  <p>Each stage is a tag in the repository, so its code can be browsed, compared with the stage before it, or downloaded exactly as it stood. The enhancement tags hold the code as submitted for each milestone.</p>
+</section>
+<div class="table-wrap is-wide">
+<table class="stages">
+  <thead><tr><th scope="col">Stage</th><th scope="col">What it added</th><th scope="col">Code</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Original<br><code>cs465-original</code></th><td>Travlr Getaways as submitted for CS 465 (August 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/cs465-original">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/cs465-original.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Enhancement One<br><code>enhancement-1-software-design</code></th><td>Roles, scoped access, the generic controller and configuration-driven interface, five school records (September 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-1-software-design">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/cs465-original...enhancement-1-software-design">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-1-software-design.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Enhancement Two<br><code>enhancement-2-algorithms</code></th><td>Scheduling conflict detection: bounded index search and per-teacher lock (September 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-2-algorithms">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-1-software-design...enhancement-2-algorithms">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-2-algorithms.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Enhancement Three<br><code>enhancement-3-databases</code></th><td>Aggregation-pipeline reports, exact money and database security (October 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-3-databases">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-2-algorithms...enhancement-3-databases">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-3-databases.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Final release 1.0.0<br><code>v1.0.0</code></th><td>Travel features retired, accounts and sign-in rebuilt, continuous integration and end-to-end tests (October 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/v1.0.0">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-3-databases...v1.0.0">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/v1.0.0.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Patch release 1.0.1<br><code>v1.0.1</code></th><td>Accounts stored at the original password work factor can sign in again; the documentation states counted figures only (October 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/v1.0.1">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/v1.0.0...v1.0.1">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/v1.0.1.zip">Download</a></span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<nav class="pager" aria-label="Previous and next pages">
+  <a class="pager-prev" href="code-review.html"><span class="pager-label">Previous</span><span class="pager-title">Code Review</span></a>
+  <a class="pager-next" href="software-design.html"><span class="pager-label">Next</span><span class="pager-title">Enhancement One: Software Design and Engineering</span></a>
+</nav>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <p class="footer-name">Azamat Soliev</p>
+    <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
+    <ul class="contact-list">
+      <li><a href="mailto:azamatthefirst1@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.8.3 7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>azamatthefirst1@gmail.com</span></a></li>
+      <li><a href="https://www.linkedin.com/in/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Zm2.3 6.9V18h2.6V9.9H6.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.3 4V18H14v-4.3c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3V18h2.6v-4.7c0-2.3-.5-4-3.2-4-1.3 0-2.1.7-2.5 1.4V9.9h-2.5Z" fill="currentColor"/></svg><span>linkedin.com/in/azamatsoliev</span></a></li>
+      <li><a href="https://github.com/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.4.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg><span>github.com/azamatsoliev</span></a></li>
+    </ul>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

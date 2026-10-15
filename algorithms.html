@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enhancement Two: Algorithms and Data Structures | Azamat Soliev</title>
+<meta name="description" content="Scheduling conflict detection with a bounded index search: O(log n + k), with k proven at most 32.">
+<meta name="author" content="Azamat Soliev">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="Enhancement Two: Algorithms and Data Structures | Azamat Soliev">
+<meta property="og:description" content="Scheduling conflict detection with a bounded index search: O(log n + k), with k proven at most 32.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="bar">
+    <a class="wordmark" href="index.html">Azamat Soliev</a>
+    <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+  </div>
+  
+<nav class="rail" aria-label="Portfolio stages">
+  <ol class="rail-list">
+    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage is-current"><a href="algorithms.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+  </ol>
+</nav>
+</header>
+<main id="main" tabindex="-1">
+
+<header class="page-head prose">
+  <h1>Enhancement Two: Algorithms and Data Structures</h1>
+  <p class="lead">Before a lesson is saved, the platform has to know whether it overlaps any lesson the same teacher already has. This enhancement answers that question at a cost that does not grow with the teacher’s history: O(log n + k), with k proven never to exceed 32.</p>
+  
+<dl class="glance">
+  <div><dt>Category</dt><dd>Algorithms and data structures</dd></div>
+  <div><dt>Course outcomes</dt><dd>Fully met: 3 and 4. Partly met: 5, completed by Enhancements One and Three.</dd></div>
+  <div><dt>Milestone</dt><dd>Milestone Three, September 2026</dd></div>
+  <div><dt>Code at this stage</dt><dd><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-2-algorithms"><code>enhancement-2-algorithms</code></a></dd></div>
+  <div><dt>Changes from Enhancement One</dt><dd><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-1-software-design...enhancement-2-algorithms">Compare on GitHub</a></dd></div>
+  <div><dt>Narrative</dt><dd><span class="link-stack"><span><a href="assets/downloads/04_Narrative_Enhancement_Two_Algorithms_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 14 KB</span></span><span><a href="assets/downloads/04_Narrative_Enhancement_Two_Algorithms_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 52 KB</span></span></span></dd></div>
+</dl>
+  
+<nav class="toc" aria-label="On this page">
+  <p class="toc-title">On this page</p>
+  <ul><li><a href="#changes">What changed</a></li><li><a href="#evidence">Evidence</a></li><li><a href="#narrative">Narrative</a></li><li><a href="#artifact-description">Artifact description</a></li><li><a href="#course-outcomes">Course outcomes</a></li><li><a href="#reflection-on-the-process">Reflection on the process</a></li><li><a href="#incorporating-feedback">Incorporating feedback</a></li></ul>
+</nav>
+</header>
+
+<section class="prose" aria-labelledby="changes">
+  <h2 id="changes">What changed</h2>
+  <ul class="changes">
+    <li><strong>A lower bound the index can use.</strong> No lesson may last more than four hours, so any lesson that overlaps a proposal must start less than four hours before it. Both ends of the search then fall on one indexed field, and the database seeks straight to them.</li>
+    <li><strong>A proven ceiling.</strong> A teacher’s lessons never overlap and last at least fifteen minutes, so no more than 32 can start inside the search window, however long the history grows.</li>
+    <li><strong>No race between checking and saving.</strong> A per-teacher lock makes the check and the save one step. A test sends two overlapping bookings at the same moment; without the lock, both are saved.</li>
+    <li><strong>Checked against the obvious answer.</strong> Differential testing compares the bounded search with a naive scan on 5,000 random cases, and the two must agree on every one.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="evidence">
+  <div class="prose"><h2 id="evidence">Evidence</h2></div>
+  
+<figure class="diagram is-wide">
+  <div class="diagram-panel">
+<div class="figure-inner">
+<div class="figure-scroll">
+<svg class="diagram-svg" viewBox="0 0 720 268" role="img" aria-labelledby="window-title window-desc">
+  <title id="window-title">The search window for a proposed 10:00 to 11:00 lesson</title>
+  <desc id="window-desc">A teacher's day from 05:00 to 15:00. The proposed lesson runs from 10:00 to 11:00. Because no lesson may last more than four hours, any lesson that overlaps it must start after 06:00 and before 11:00, so only lessons starting inside that window are examined. Two lessons start inside it; the 09:00 to 10:30 lesson overlaps and the booking is refused. Lessons outside the window, and the teacher's entire earlier history, are never read.</desc>
+  <rect class="window" x="205" y="44" width="275" height="150"/>
+  <line class="window-edge" x1="205" x2="205" y1="40" y2="194"/>
+  <line class="window-edge" x1="480" x2="480" y1="40" y2="194"/>
+  <text class="window-label" x="213" y="34">Search window: proposed start minus 4 hours, to proposed end</text>
+  <text class="lane-label" x="18" y="68">Earlier history</text>
+  <rect class="hist" x="18" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="26.5" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="35" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="43.5" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="52" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="60.5" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="69" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="77.5" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="86" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="94.5" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="103" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="111.5" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="120" y="78" width="5" height="30" rx="1.5"/><rect class="hist" x="128.5" y="78" width="5" height="30" rx="1.5"/>
+  <text class="lane-label" x="213" y="68">Teacher's lessons that day</text>
+  <rect class="lesson lesson-outside" x="163.75" y="78" width="55" height="30" rx="4"/><rect class="lesson lesson-examined" x="260" y="78" width="82.5" height="30" rx="4"/><rect class="lesson lesson-conflict" x="370" y="78" width="82.5" height="30" rx="4"/><rect class="lesson lesson-outside" x="507.5" y="78" width="82.5" height="30" rx="4"/><rect class="lesson lesson-outside" x="617.5" y="78" width="55" height="30" rx="4"/>
+  <text class="conflict-label" x="376" y="98">Overlaps</text>
+  <text class="lane-label" x="213" y="140">Proposed lesson</text>
+  <rect class="lesson lesson-proposed" x="425" y="150" width="55" height="30" rx="4"/>
+  <text class="proposed-label" x="488" y="170">10:00 to 11:00</text>
+  <line class="axis" x1="150" x2="700" y1="196" y2="196"/>
+  <line class="tickline" x1="150" x2="150" y1="196" y2="202"/><text class="tick" x="150" y="218" text-anchor="middle">05:00</text><line class="tickline" x1="260" x2="260" y1="196" y2="202"/><text class="tick" x="260" y="218" text-anchor="middle">07:00</text><line class="tickline" x1="370" x2="370" y1="196" y2="202"/><text class="tick" x="370" y="218" text-anchor="middle">09:00</text><line class="tickline" x1="480" x2="480" y1="196" y2="202"/><text class="tick" x="480" y="218" text-anchor="middle">11:00</text><line class="tickline" x1="590" x2="590" y1="196" y2="202"/><text class="tick" x="590" y="218" text-anchor="middle">13:00</text><line class="tickline" x1="700" x2="700" y1="196" y2="202"/><text class="tick" x="700" y="218" text-anchor="middle">15:00</text>
+</svg>
+</div>
+<ul class="diagram-key">
+  <li><span class="swatch swatch-examined"></span>Starts inside the window: examined</li>
+  <li><span class="swatch swatch-conflict"></span>Examined and overlapping: the booking is refused with 409 Conflict</li>
+  <li><span class="swatch swatch-outside"></span>Starts outside the window: never read</li>
+</ul>
+</div></div>
+  <figcaption>Only lessons that start inside the window can overlap the proposal, so only they are read. The teacher’s earlier history, however long, is never touched.</figcaption>
+</figure>
+
+<figure class="diagram is-wide">
+  <div class="diagram-panel">
+<div class="figure-inner chart">
+  <ul class="legend" aria-hidden="true">
+    <li><span class="key key-naive"></span>Naive scan, or an index search with no lower bound</li>
+    <li><span class="key key-bounded"></span>Index search bounded by the four-hour maximum</li>
+  </ul>
+  <div class="figure-scroll">
+  <svg class="chart-svg" viewBox="0 0 720 400" role="img" aria-labelledby="bench-title bench-desc">
+    <title id="bench-title">Lessons examined per conflict check, by size of the teacher's history</title>
+    <desc id="bench-desc">Both axes use a logarithmic scale. The naive scan examines every lesson: 1,000, 10,000, 100,000 and 1,000,000. The bounded index search examines 11.8, 14.3, 18.1 and 21.9 lessons on average at the same sizes.</desc>
+    <text class="axis-title" x="48" y="18" text-anchor="start">Lessons examined per check</text>
+    <line class="grid" x1="58" x2="544" y1="342" y2="342"/><line class="grid" x1="58" x2="544" y1="290.6666666666667" y2="290.6666666666667"/><line class="grid" x1="58" x2="544" y1="239.33333333333334" y2="239.33333333333334"/><line class="grid" x1="58" x2="544" y1="188" y2="188"/><line class="grid" x1="58" x2="544" y1="136.66666666666669" y2="136.66666666666669"/><line class="grid" x1="58" x2="544" y1="85.33333333333331" y2="85.33333333333331"/><line class="grid" x1="58" x2="544" y1="34" y2="34"/>
+    <line class="axis" x1="58" x2="544" y1="342" y2="342"/>
+    <text class="tick" x="48" y="346" text-anchor="end">1</text><text class="tick" x="48" y="294.6666666666667" text-anchor="end">10</text><text class="tick" x="48" y="243.33333333333334" text-anchor="end">100</text><text class="tick" x="48" y="192" text-anchor="end">1K</text><text class="tick" x="48" y="140.66666666666669" text-anchor="end">10K</text><text class="tick" x="48" y="89.33333333333331" text-anchor="end">100K</text><text class="tick" x="48" y="38" text-anchor="end">1M</text>
+    <text class="tick" x="58" y="364" text-anchor="middle">1K</text><text class="tick" x="220" y="364" text-anchor="middle">10K</text><text class="tick" x="382" y="364" text-anchor="middle">100K</text><text class="tick" x="544" y="364" text-anchor="middle">1M</text>
+    <text class="axis-title" x="301" y="388" text-anchor="middle">Lessons in the teacher's history (both axes logarithmic)</text>
+    <path class="line line-naive" d="M58.0,188.0 L220.0,136.7 L382.0,85.3 L544.0,34.0"/>
+    <path class="line line-bounded" d="M58.0,287.0 L220.0,282.7 L382.0,277.4 L544.0,273.2"/>
+    <circle class="pt pt-naive" cx="58.0" cy="188.0" r="4.5"><title>Naive scan: 1,000 examined with 1,000 lessons in the history</title></circle><circle class="pt pt-naive" cx="220.0" cy="136.7" r="4.5"><title>Naive scan: 10,000 examined with 10,000 lessons in the history</title></circle><circle class="pt pt-naive" cx="382.0" cy="85.3" r="4.5"><title>Naive scan: 100,000 examined with 100,000 lessons in the history</title></circle><circle class="pt pt-naive" cx="544.0" cy="34.0" r="4.5"><title>Naive scan: 1,000,000 examined with 1,000,000 lessons in the history</title></circle>
+    <circle class="pt pt-bounded" cx="58.0" cy="287.0" r="4.5"><title>Bounded search: 11.8 examined with 1,000 lessons in the history</title></circle><circle class="pt pt-bounded" cx="220.0" cy="282.7" r="4.5"><title>Bounded search: 14.3 examined with 10,000 lessons in the history</title></circle><circle class="pt pt-bounded" cx="382.0" cy="277.4" r="4.5"><title>Bounded search: 18.1 examined with 100,000 lessons in the history</title></circle><circle class="pt pt-bounded" cx="544.0" cy="273.2" r="4.5"><title>Bounded search: 21.9 examined with 1,000,000 lessons in the history</title></circle>
+    <text class="end-label" x="556" y="32">Naive: 1,000,000</text>
+    <text class="end-note" x="556" y="50">every lesson, every time</text>
+    <text class="end-label" x="556" y="271.19053543820723">Bounded: 21.9</text>
+    <text class="end-note" x="556" y="289.19053543820723">about +3.4 per tenfold growth</text>
+  </svg>
+  </div>
+</div>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th scope="col">Lessons in history</th><th scope="col">Naive: examined</th><th scope="col">Bounded: examined</th><th scope="col">Naive: time per check</th><th scope="col">Bounded: time per check</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">1,000</th><td>1,000</td><td>11.8</td><td>0.3275 ms</td><td>0.0040 ms</td></tr>
+    <tr><th scope="row">10,000</th><td>10,000</td><td>14.3</td><td>2.02 ms</td><td>0.0027 ms</td></tr>
+    <tr><th scope="row">100,000</th><td>100,000</td><td>18.1</td><td>17.85 ms</td><td>0.0008 ms</td></tr>
+    <tr><th scope="row">1,000,000</th><td>1,000,000</td><td>21.9</td><td>155.79 ms</td><td>0.0013 ms</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="table-note">Recorded with <code>npm run bench</code>: seed 20260921, 200 forward bookings at each size.</p></div>
+  <figcaption>Lessons examined per check as the history grows. The naive scan reads the whole history every time; the bounded search reads about 22 lessons when the history holds a million. Times vary by machine; the counts do not.</figcaption>
+</figure>
+
+<figure class="diagram is-wide evidence" data-evidence="assets/evidence/benchmark-mongo.txt" hidden>
+  <div class="console-scroll" role="region" aria-label="Benchmark output from MongoDB" tabindex="0"><pre class="console"><code></code></pre></div>
+  <figcaption>The same benchmark run inside a real MongoDB server (<code>npm run bench:mongo</code>). The key and document counts are MongoDB’s own figures, taken from its query plans, not from a model of the database.</figcaption>
+</figure>
+
+<figure class="shot shot-final is-wide" data-final-shot>
+  <a class="shot-link" href="assets/images/screens/final/04-owner-double-booking-refused.png"><img src="assets/images/screens/final/04-owner-double-booking-refused.png" alt="The add class session form showing the message: this teacher is already booked for Beginner English A1." width="1280" height="800" decoding="async"></a>
+  <figcaption>The refusal reaches the screen as a readable message. An end-to-end test tries to book Dilnoza Karimova into a lesson that overlaps her Beginner English A1 class and saves this screenshot. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
+</figure>
+</section>
+
+<section class="prose narrative" aria-labelledby="narrative">
+  <h2 id="narrative">Narrative</h2>
+  <h3 id="artifact-description">Artifact description</h3>
+<p>The artifact is Travlr Getaways, a full-stack MEAN application I built as the final project for CS 465, Full Stack Development, in July and August of 2026, and which I extended in Enhancement One into the foundation of a management platform for a small language school, released in its final form as Azamat School Admin. For this enhancement I worked in its scheduling layer: the ClassSession model and the data-access code in app_api that reads and writes it. In its original form, the application’s data access contained no algorithm worth the name. The trip controller retrieved either every document in a collection or a single document by exact key, and nowhere in the codebase did any logic compare one record against another.</p>
+<h3 id="justification-for-inclusion">Justification for inclusion</h3>
+<p>I selected this component because scheduling is the first place in the platform where a genuinely algorithmic question arises: before a class session is saved, does it overlap any session that teacher already has? That question has an obvious correct answer and a much better one, and the distance between them is exactly what the algorithms and data structures category exists to demonstrate.</p>
+<p>The obvious answer loads every session the teacher has ever taught and compares each to the proposal. It is correct, but it runs in O(n) time and O(n) memory, where n is the teacher’s entire history, so after three years of lessons, booking next Tuesday reads and transfers three years of records. The component that best shows my skills is the reasoning that followed. The natural optimization is to add a database index on the teacher and start time and query the overlap condition directly, and it looks right. It is not. An index is ordered by start time and can only use conditions on that field, and the overlap condition bounds start time from above only. With no lower bound, the database has nowhere to begin except the start of the teacher’s history, so the query still walks every entry up to the proposed end. Adding the index would have changed nothing asymptotically. Recognizing that an apparently optimized query can retain the cost it was meant to remove was the most important insight in this enhancement.</p>
+<p>The fix comes from the schema. Because no session may last longer than four hours, any session that overlaps the proposal must start less than four hours before it. That supplies the missing lower bound, so both ends of the search window apply to start time and the index can serve the whole search. The database seeks to the window in O(log n) through its B-tree and examines only the k sessions inside it, each tested in O(1), for a total of O(log n + k). I then went further than my plan and proved that k is bounded by a constant. The conflict check guarantees that one teacher’s active sessions never overlap, which holds inductively because every write that could break it passes through the check first. Active sessions are therefore laid end to end, and with a fifteen-minute minimum length at most thirty-two of them can start inside the eight-hour window. The check is O(log n) in the worst case.</p>
+<p>To demonstrate this rather than only argue it, I modeled all three strategies in memory, where a schedule sorted by start time reproduces the cost structure of a B-tree index, and counted how many sessions each examined for forward bookings at increasing history sizes:</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th scope="col">Sessions in history (n)</th><th scope="col">Naive: examined</th><th scope="col">Unbounded index: examined</th><th scope="col">Bounded index: examined</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">1,000</th><td>1,000</td><td>1,000</td><td>11.8</td></tr>
+    <tr><th scope="row">10,000</th><td>10,000</td><td>10,000</td><td>14.3</td></tr>
+    <tr><th scope="row">100,000</th><td>100,000</td><td>100,000</td><td>18.1</td></tr>
+    <tr><th scope="row">1,000,000</th><td>1,000,000</td><td>1,000,000</td><td>21.9</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The naive and unbounded strategies examine every session at every size, so their work grows linearly. The bounded strategy’s work rises by about 3.4 on average each time the history grows tenfold, close to log<sub>2</sub>(10), which is 3.32: the signature of logarithmic growth, measured directly. In the run recorded for the final release, a million-session history took about 156 milliseconds per check under the naive approach and about one microsecond under the bounded one; running times vary by machine, while the counts of sessions examined do not.</p>
+<p>The artifact was improved in five ways beyond the core algorithm, each because the plan as written would not have fully delivered what it promised. I added a fifteen-minute minimum session length, without which the bound on candidates described above would not hold. I reordered the compound index to teacher, active flag, then start time, following the equality-sort-range rule, which keeps withdrawn sessions out of the range the query walks. I added a per-teacher lock so the check and the save run as one step. I made updates merge with the stored record and exclude the session being edited, since my plan’s pseudocode passed the raw request body, which would have mishandled partial updates and let a session conflict with itself. And I prevented teachers from reassigning their sessions or changing their rates, since the rate feeds directly into what students are charged. In the final release, the double-booking refusal is also exercised end to end: a browser test signs in as the owner, tries to book a teacher into an overlapping lesson, and confirms that the server’s refusal reaches the screen as a readable message.</p>
+<p>The specific skills this enhancement demonstrates are algorithm analysis in Big-O notation, index design for range queries, a correctness proof for a performance bound, concurrency control with a keyed lock, and verification through a reproducible benchmark and differential testing against a reference implementation.</p>
+<h3 id="course-outcomes">Course outcomes</h3>
+<p>I planned to meet outcomes three and four with this enhancement, and I met both. Outcome three, designing and evaluating computing solutions using algorithmic principles while managing trade-offs, is the center of this work. I compared three strategies by stated time complexity, showed why the intuitive optimization fails, proved a constant bound on the candidate set, and measured the result. The trade-off is stated openly rather than hidden: the bounded query is correct only because session length is constrained on every write. One of my tests demonstrates this directly, constructing a six-hour session that the schema would refuse and showing that the bounded search misses the conflict it creates while the naive search finds it. I traded full generality for a guaranteed cost ceiling, and paid for it with two schema rules a language school can accept at no cost. Outcome four, using well-founded techniques to deliver value, is met through compound indexing, binary search, and a keyed mutex, each an established technique applied to a concrete problem, and through a test suite that grew from 51 to 105 tests at this milestone. That suite includes differential testing, in which the optimized search is checked against the obviously correct naive search on five thousand random cases and must agree on every one.</p>
+<p>I have one update to my coverage plan. This enhancement also contributes to outcome five, which I had assigned only to Category One. Two of the refinements are security and integrity fixes. The race between checking and saving is a real integrity flaw: my own test sends two overlapping bookings simultaneously, and without the lock both are saved. The rate restriction closes a path by which a teacher could change what students are charged.</p>
+<p>In summary, this enhancement fully meets outcomes three and four and partially meets outcome five, which is completed by the security work of Enhancements One and Three. Outcomes one and two were not targets of this enhancement; they are met by the role model of Enhancement One, the reports of Enhancement Three, and the communication across this portfolio. No outcome planned for this enhancement was left unmet.</p>
+<h3 id="reflection-on-the-process">Reflection on the process</h3>
+<p>The most valuable thing I learned is that a performance claim is not finished until its assumptions are proven. My Module One plan stated that the candidate set would be small because a teacher can only hold so many sessions in a window. While implementing it, I realized nothing in the code actually enforced that. Sessions had a maximum length but no minimum, so in principle thousands of one-millisecond sessions could fill a window and make k as large as n. The fix was a fifteen-minute minimum, which costs a language school nothing, but finding the gap changed how I read my own reasoning. I now look for the unstated assumption behind any complexity claim, and ask what in the code guarantees it.</p>
+<p>The hardest challenge was the race condition, because it is invisible in ordinary testing. Requests handled one at a time never trigger it. To show it was real I wrote a test that sends two overlapping bookings at the same moment through the actual controller, against an in-memory store that pauses on every read and write as a database would. Without the lock, both bookings were saved. That result mattered more than the passing test with the lock, because it proved the lock was solving a real problem rather than guarding against something that could never happen. I was also careful to document the lock’s limitation: it works because the API runs as a single process, and a multi-server deployment would need a database-level mechanism instead. That limitation remains listed in the project’s documentation, with the recommended next step.</p>
+<p>A final challenge was verification without depending on one environment. I built the benchmark and the property tests on a seeded random generator, so every schedule, every proposal, and every result can be reproduced exactly. A failing case can be replayed rather than guessed at. That is a small design decision, but it is the difference between a test suite that reports a problem and one that helps solve it.</p>
+<h3 id="incorporating-feedback">Incorporating feedback</h3>
+<p>The instructor feedback on this milestone confirmed that each rubric criterion was met and requested no changes. The changes that improved this enhancement came from testing my own claims. The five refinements described above each began as a gap between what the Module One plan promised and what the code guaranteed, found by asking what would make the plan false: an unbounded candidate set, withdrawn sessions accumulating in the index range, a race between checking and saving, partial updates conflicting with themselves, and a teacher able to change a rate. Differential testing against the naive search acted as a reviewer that never tires, and the race test supplied evidence that the lock was needed before it was relied on. The final release added one more reviewer, the end-to-end test, so the refusal is now checked through the whole system on every change.</p>
+</section>
+
+<nav class="pager" aria-label="Previous and next pages">
+  <a class="pager-prev" href="software-design.html"><span class="pager-label">Previous</span><span class="pager-title">Enhancement One: Software Design and Engineering</span></a>
+  <a class="pager-next" href="databases.html"><span class="pager-label">Next</span><span class="pager-title">Enhancement Three: Databases</span></a>
+</nav>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <p class="footer-name">Azamat Soliev</p>
+    <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
+    <ul class="contact-list">
+      <li><a href="mailto:azamatthefirst1@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.8.3 7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>azamatthefirst1@gmail.com</span></a></li>
+      <li><a href="https://www.linkedin.com/in/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Zm2.3 6.9V18h2.6V9.9H6.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.3 4V18H14v-4.3c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3V18h2.6v-4.7c0-2.3-.5-4-3.2-4-1.3 0-2.1.7-2.5 1.4V9.9h-2.5Z" fill="currentColor"/></svg><span>linkedin.com/in/azamatsoliev</span></a></li>
+      <li><a href="https://github.com/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.4.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg><span>github.com/azamatsoliev</span></a></li>
+    </ul>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

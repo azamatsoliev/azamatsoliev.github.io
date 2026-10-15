@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enhancement Three: Databases | Azamat Soliev</title>
+<meta name="description" content="Aggregation-pipeline reports with exact money, and database security from request parsing to field projection.">
+<meta name="author" content="Azamat Soliev">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="Enhancement Three: Databases | Azamat Soliev">
+<meta property="og:description" content="Aggregation-pipeline reports with exact money, and database security from request parsing to field projection.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="bar">
+    <a class="wordmark" href="index.html">Azamat Soliev</a>
+    <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+  </div>
+  
+<nav class="rail" aria-label="Portfolio stages">
+  <ol class="rail-list">
+    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage is-current"><a href="databases.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+  </ol>
+</nav>
+</header>
+<main id="main" tabindex="-1">
+
+<header class="page-head prose">
+  <h1>Enhancement Three: Databases</h1>
+  <p class="lead">A school runs on decisions, not records. This enhancement adds five MongoDB aggregation pipelines that turn students, lessons, attendance and payments into the reports each role needs, with money exact to the cent and database security from request parsing to the fields a query returns.</p>
+  
+<dl class="glance">
+  <div><dt>Category</dt><dd>Databases</dd></div>
+  <div><dt>Course outcomes</dt><dd>Fully met: 1, 2 and 3. Also contributes to 4 and 5.</dd></div>
+  <div><dt>Milestone</dt><dd>Milestone Four, October 2026, with additions in the final release</dd></div>
+  <div><dt>Code at this stage</dt><dd><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-3-databases"><code>enhancement-3-databases</code></a></dd></div>
+  <div><dt>Changes from Enhancement Two</dt><dd><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-2-algorithms...enhancement-3-databases">Compare on GitHub</a></dd></div>
+  <div><dt>Narrative</dt><dd><span class="link-stack"><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 52 KB</span></span></span></dd></div>
+</dl>
+  
+<nav class="toc" aria-label="On this page">
+  <p class="toc-title">On this page</p>
+  <ul><li><a href="#changes">What changed</a></li><li><a href="#evidence">Evidence</a></li><li><a href="#narrative">Narrative</a></li><li><a href="#artifact-description">Artifact description</a></li><li><a href="#course-outcomes">Course outcomes</a></li><li><a href="#reflection-on-the-process">Reflection on the process</a></li><li><a href="#incorporating-feedback">Incorporating feedback</a></li></ul>
+</nav>
+</header>
+
+<section class="prose" aria-labelledby="changes">
+  <h2 id="changes">What changed</h2>
+  <ul class="changes">
+    <li><strong>Five pipelines, a report for each decision.</strong> Outstanding balances and revenue by student, with a spreadsheet export, for the accountant; revenue by month; a class summary for the owner; and an attendance sheet for each teacher.</li>
+    <li><strong>Exact money.</strong> Every amount is converted to whole cents inside the database before it is summed, so a settled balance is exactly zero.</li>
+    <li><strong>Security at the database boundary.</strong> Requests carrying query operators are refused, query strings are parsed flatly, spreadsheet exports neutralize formulas, and the API can connect through a least-privilege database account.</li>
+    <li><strong>Names only for teachers.</strong> In the final release, a projection returns only students’ names to a teacher, enough to take attendance without seeing contact details.</li>
+    <li><strong>Verified inside MongoDB.</strong> The same pipelines run in the unit tests and against a real MongoDB server, in continuous integration on every change.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="evidence">
+  <div class="prose"><h2 id="evidence">Evidence</h2></div>
+  
+<figure class="diagram is-wide">
+  <div class="diagram-panel">
+<ol class="pipeline" aria-label="Stages of the outstanding balance pipeline">
+  <li><p class="pipe-stage">Start from every student</p><p class="pipe-detail">Runs on the students collection.</p></li>
+  <li><p class="pipe-stage">Join attendance</p><p class="pipe-detail">Keep only records marked present that have not been withdrawn.</p></li>
+  <li><p class="pipe-stage">Join the lessons attended</p><p class="pipe-detail">Keep only lessons that were not canceled; each carries its own rate.</p></li>
+  <li><p class="pipe-stage">Join payments</p><p class="pipe-detail">Keep only payments that were not reversed.</p></li>
+  <li><p class="pipe-stage">Sum in whole cents</p><p class="pipe-detail">Billed and paid are converted to integer cents before adding, so the outstanding balance is exact.</p></li>
+  <li><p class="pipe-stage">Keep what the accountant needs</p><p class="pipe-detail">Every active student, plus any former student whose balance is not exactly zero, sorted by amount owed.</p></li>
+</ol>
+<div class="money-note">
+  <p><span class="money-label">In floating point</span> <code>10.05 + 16.85 = 26.900000000000002</code></p>
+  <p><span class="money-label">In whole cents</span> <code>1005 + 1685 = 2690</code></p>
+</div></div>
+  <figcaption>The outstanding balance pipeline. Every stage runs inside MongoDB, so only the finished report crosses the network.</figcaption>
+</figure>
+
+<figure class="diagram is-wide evidence" data-evidence="assets/evidence/verify-reports.txt" hidden>
+  <div class="console-scroll" role="region" aria-label="Report verification output" tabindex="0"><pre class="console"><code></code></pre></div>
+  <figcaption>Report verification on a real MongoDB server (<code>npm run verify:reports</code>): the production pipelines run against the hand-calculated school, every figure is compared, and the index each query used is reported.</figcaption>
+</figure>
+<div class="shot-pair" data-shot-group>
+<figure class="shot shot-final " data-final-shot>
+  <a class="shot-link" href="assets/images/screens/final/03-owner-class-summary.png"><img src="assets/images/screens/final/03-owner-class-summary.png" alt="The owner’s class summary report for September 2026, comparing attendance and earnings for each class." width="1280" height="800" decoding="async"></a>
+  <figcaption>The owner compares attendance and earnings for each class, to decide which classes to keep running. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
+</figure>
+<figure class="shot shot-final " data-final-shot>
+  <a class="shot-link" href="assets/images/screens/final/06-accountant-monthly-revenue.png"><img src="assets/images/screens/final/06-accountant-monthly-revenue.png" alt="The accountant’s monthly revenue report for September 2026, one row per student, with an Export CSV button." width="1280" height="800" decoding="async"></a>
+  <figcaption>The accountant reconciles revenue line by line and exports it to a spreadsheet. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
+</figure></div>
+<div class="shot-pair" data-shot-group>
+<figure class="shot shot-final " data-final-shot>
+  <a class="shot-link" href="assets/images/screens/final/08-teacher-attendance-sheet.png"><img src="assets/images/screens/final/08-teacher-attendance-sheet.png" alt="A teacher’s attendance sheet for September 2026, listing their lessons and attendance counts, with no money shown." width="1280" height="800" decoding="async"></a>
+  <figcaption>A teacher sees an attendance checklist for their own lessons, with no financial figure anywhere on it. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
+</figure>
+<figure class="shot shot-final " data-final-shot>
+  <a class="shot-link" href="assets/images/screens/final/09-teacher-record-attendance.png"><img src="assets/images/screens/final/09-teacher-record-attendance.png" alt="The attendance form for a teacher, where the student list shows names only." width="1280" height="800" decoding="async"></a>
+  <figcaption>Recording attendance: the student list a teacher receives holds names only. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
+</figure></div>
+</section>
+
+<section class="prose narrative" aria-labelledby="narrative">
+  <h2 id="narrative">Narrative</h2>
+  <h3 id="artifact-description">Artifact description</h3>
+<p>The artifact is Travlr Getaways, a full-stack MEAN application I built as the final project for CS 465, Full Stack Development, in July and August of 2026. In Enhancements One and Two I extended it into the foundation of a management platform for a small language school, with students, teachers, class sessions, payments and attendance; its final release carries the name Azamat School Admin. This enhancement works on its data layer: the Mongoose schemas, their indexes, and the queries that turn stored records into information. In its original form that layer was flat. The application had two schemas with no relationship between them, indexes only on single fields (a trip’s code and name, and a user’s email), and no use of MongoDB’s aggregation framework; every query read a single collection and returned either every document or one document by key.</p>
+<h3 id="justification-for-inclusion">Justification for inclusion</h3>
+<p>I selected the data layer because a school does not run on records alone. The owner needs to know whether a class is worth continuing to run, the accountant needs to know who owes money and reconcile what was received, and a teacher needs to know which lessons still need attendance taken. None of those answers lives in any single collection. Each requires combining several, which is exactly what the databases category exists to demonstrate.</p>
+<p>The enhancement adds five MongoDB aggregation pipelines, each a sequence of stages the database applies in order to filter, join, group and calculate, so that only the finished report crosses the network. The central one computes each student’s outstanding balance by joining students to their attendance, to the sessions attended, and to their payments, following the billing model agreed in Module One: a student is charged per lesson attended, at that lesson’s rate, minus what they have paid. A reports screen then presents each role with the reports that support its own decisions, and in a form suited to them: the owner sees attendance and earnings side by side for each class, the accountant sees balances and a line-by-line revenue table that exports to a spreadsheet, and a teacher sees only their own attendance sheet, with no financial figure anywhere on it.</p>
+<p>The components that best demonstrate my database skills are the decisions inside those pipelines, because implementing the plan as written would have produced wrong reports. The plan’s balance pipeline counted every record. The platform deletes softly, keeping withdrawn records for their history, so a reversed payment, a canceled lesson and a withdrawn attendance record would all have been counted. Every pipeline now filters on the active flag. Money was the second problem. Rates and payments are stored as binary floating point, which cannot represent most decimal fractions exactly: the lesson rates 10.05 and 16.85 add to 26.900000000000002. Every amount is therefore converted to whole cents before anything is summed, and the schemas refuse any amount with more than two decimal places, so every total is exact. That exactness has a concrete consequence. A former student who paid precisely what they owed would otherwise have a balance a few quadrillionths away from zero rather than exactly zero, and would wrongly remain in the accountant’s report as still owing.</p>
+<p>Three further decisions are equally specific. Payment dates and lesson times are stored differently, so each is grouped into months the way it was entered: a payment date is a calendar date stored as midnight UTC and is grouped in UTC, while a lesson time is grouped in local time. Grouping payments in local time would move a payment made on the first of a month into the previous month for any school west of Greenwich. Second, a whole-school monthly report had no usable index, because the compound index built for conflict detection leads with the teacher, and a compound index can only be used from its leading field. I added an index on the active flag and start time, so the report seeks straight to the month instead of scanning every lesson the school has ever run. Third, Mongoose stores the attendance model in a collection named attendances, and a MongoDB lookup that names a collection that does not exist returns nothing without raising any error. Every pipeline reads its collection names from the models.</p>
+<p>The enhancement also hardens the security of the database. Any object with a key beginning with a dollar sign is a MongoDB query operator, so a request containing &quot;teacherId&quot;: {&quot;$ne&quot;: null} would have turned a check for a specific teacher into a search that matches any teacher. Request bodies containing operators are now refused before any query runs, query strings are parsed flatly so that one cannot carry an operator either, and every report parameter must be an exact string. A teacher’s attendance sheet always uses the identity from their signed token and ignores any teacher named in the request. Teachers may also record attendance only for their own lessons; because students are billed per lesson attended, a teacher able to mark a student present at a colleague’s lesson could have added a charge to that student’s balance, and nothing previously prevented it. The spreadsheet export neutralizes any name beginning with a formula character, so a student entered as =HYPERLINK(…) cannot become a live formula on the accountant’s computer. Report responses are marked not to be cached. The application can now connect to a database that requires a password, using a least-privilege account restricted to its own database, and the password is hidden whenever the connection string is logged.</p>
+<p>The final release added one more control at the database level. Teachers could not record attendance from the interface, because the student list was refused to them, which left the attendance form’s choice of student empty. Granting teachers the full student list would have exposed contact details they do not need. Instead, each entity can now declare a projection per role, and MongoDB returns only first and last names to a teacher: the minimum needed to mark attendance, with email addresses and telephone numbers never leaving the database. The rule matches the exact role rather than an inherited one, so the owner, whose role includes every teacher permission, still receives complete records.</p>
+<p>The specific skills this enhancement demonstrates are MongoDB aggregation pipeline design with joins, grouping and date handling, index design for reporting queries, exact money arithmetic in whole cents, data modeling with references, defenses against query-operator and spreadsheet-formula injection, least privilege through projections and a restricted database account, and testing database code both in memory and on a real MongoDB server.</p>
+<h3 id="course-outcomes">Course outcomes</h3>
+<p>I planned to meet outcomes one, two and three with this enhancement, and I met all three. Outcome one is met because each report answers a decision a specific role in the school has to make, using figures drawn from recorded activity rather than estimates. Outcome two is met because the same underlying data is presented differently for each reader: a comparison for the owner, a reconcilable table and export for the accountant, and a checklist for the teacher. A single generic table would have been technically correct and practically useless to at least two of them. Outcome three is met through trade-offs I can state precisely. Attendance and payments reference students and sessions rather than embedding them, which is what allows the pipelines to join them at all. Each index is added only where a real query needs it, because every index slows every write. Money is converted to cents at calculation time rather than migrating stored values to a decimal type, which gives exact results without a data migration. And rates are read live because each session is a single dated lesson, so editing a past rate is a correction; if sessions were generated from a shared course template, each rate would need to be copied onto the attendance record instead, so that a price change could not rewrite past charges.</p>
+<p>I have one update to my coverage plan. This enhancement also demonstrates outcomes four and five, through the testing approach and the database security work described above. With this enhancement complete, all five course outcomes are demonstrated across the three enhancements:</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th scope="col">Course outcome</th><th scope="col">Where it is demonstrated</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">1. Collaborative environments supporting decision making</th><td>Enhancement One: owner, accountant and teacher roles with purpose-built access. Enhancement Three: reports built around each role’s own decision.</td></tr>
+    <tr><th scope="row">2. Professional communication adapted to audience</th><td>Enhancement Three: a different report format for each reader. Code review, plan, narratives and this portfolio.</td></tr>
+    <tr><th scope="row">3. Algorithmic principles and design trade-offs</th><td>Enhancement Two: O(n) against O(log n + k), with k proven at most 32. Enhancement Three: index, money and data-model trade-offs.</td></tr>
+    <tr><th scope="row">4. Well-founded and innovative techniques</th><td>Enhancement One: generic controller factory. Enhancement Two: bounded index search, keyed mutex. Enhancement Three: aggregation pipelines executed in tests and verified in MongoDB.</td></tr>
+    <tr><th scope="row">5. Security mindset</th><td>Enhancement One: role and ownership scoping, stored XSS fixed. Enhancement Two: booking race closed. Enhancement Three: injection defenses, least-privilege access, names-only projection.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>In summary, this enhancement fully meets outcomes one, two and three, and contributes to outcomes four and five, which are fully met across the three enhancements together. No outcome is left unmet.</p>
+<h3 id="reflection-on-the-process">Reflection on the process</h3>
+<p>The most important thing I learned is that a test which passes has not proven anything until it has been shown to fail. My report tests run the real production pipelines against a small school whose every figure I calculated by hand. They passed on the first run, so I deliberately broke the pipelines to confirm the tests would notice. Counting reversed payments was caught immediately. Removing the rounding step from the money arithmetic was not caught at all, because the lesson rates I had chosen happened to convert to whole cents exactly, so the missing step made no difference to them. The test suite was passing while unable to detect the very defect it was written to prevent. I searched for realistic prices that expose both ways floating point fails, changed the fixture, recalculated every expected figure, and confirmed that each kind of defect now fails the tests. I now treat demonstrating that a test can fail as part of writing it.</p>
+<p>The main challenge was verifying database code without depending on a single environment. Aggregation pipelines run inside MongoDB, so I kept the pipeline definitions free of any database connection and ran the identical objects in an in-memory implementation of MongoDB’s aggregation language during testing. That alone was not sufficient, because an in-memory engine is not MongoDB, so I also wrote a verification tool that loads the same hand-calculated school into a temporary database on a real MongoDB server, runs the real pipelines, checks every figure, and reports which index each query used. The two together test the logic everywhere and the real engine where it runs. In the final release, continuous integration runs that verification on a fresh MongoDB server on every change.</p>
+<p>Another lesson came from returning to my own earlier work. While checking how the new reports would be routed, I found that a change I made in Enhancement One had broken the public trip listing for visitors who were not signed in, and with it the public travel page. The entity router applied its sign-in check to every request passing through it, including ones it did not own, and it had gone unnoticed because the page still worked for anyone who was signed in to the administrative screen. I corrected it and added a regression test, which the final release kept, pointed at the routes that remain public. The experience reinforced something this capstone keeps teaching: the defects that survive are the ones that fail silently, whether a lookup against a misnamed collection, a balance that is almost zero, or a page that only breaks for the users you are not.</p>
+<h3 id="incorporating-feedback">Incorporating feedback</h3>
+<p>The instructor feedback on this milestone confirmed that each rubric criterion was met and requested no changes. The improvements in this enhancement came from three kinds of review. Comparing the approved plan against the data as actually stored exposed the gaps described above, from counting reversed payments to the misnamed collection. Deliberately breaking the code exposed the test that could not fail. And tracing real tasks through the system, step by step as a teacher would perform them, exposed both the attendance ownership flaw and, in the final release, the empty student list that stopped teachers from recording attendance at all. Each finding was corrected with a test, so the review is repeated automatically whenever the code changes.</p>
+</section>
+
+<nav class="pager" aria-label="Previous and next pages">
+  <a class="pager-prev" href="algorithms.html"><span class="pager-label">Previous</span><span class="pager-title">Enhancement Two: Algorithms and Data Structures</span></a>
+  <span></span>
+</nav>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <p class="footer-name">Azamat Soliev</p>
+    <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
+    <ul class="contact-list">
+      <li><a href="mailto:azamatthefirst1@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.8.3 7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>azamatthefirst1@gmail.com</span></a></li>
+      <li><a href="https://www.linkedin.com/in/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Zm2.3 6.9V18h2.6V9.9H6.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.3 4V18H14v-4.3c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3V18h2.6v-4.7c0-2.3-.5-4-3.2-4-1.3 0-2.1.7-2.5 1.4V9.9h-2.5Z" fill="currentColor"/></svg><span>linkedin.com/in/azamatsoliev</span></a></li>
+      <li><a href="https://github.com/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.4.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg><span>github.com/azamatsoliev</span></a></li>
+    </ul>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿
+Verifying report pipelines against MongoDB (mongodb://127.0.0.1/azamat_school_reportcheck)
+
+  PASS  Balances: rows and order
+  PASS  Balances: totals
+  PASS  Revenue for October: rows
+  PASS  Revenue for October: totals
+  PASS  Revenue by month: September
+  PASS  Revenue by month: October
+  PASS  Revenue by month: year totals
+  PASS  Class summary: rows
+  PASS  Class summary: totals
+  PASS  Attendance sheet: statuses
+  PASS  Attendance sheet: first roster
+  PASS  Attendance sheet: summary
+  PASS  Index used by the class summary
+  PASS  Index used by the attendance sheet
+
+14 of 14 checks passed.
+The azamat_school_reportcheck database has been deleted.
+
