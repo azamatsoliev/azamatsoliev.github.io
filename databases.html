@@ -22,16 +22,36 @@
   <div class="bar">
     <a class="wordmark" href="index.html">Azamat Soliev</a>
     <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+    <details class="menu">
+      <summary class="menu-button"><span class="menu-icon" aria-hidden="true"></span><span>Menu</span></summary>
+      <nav class="menu-panel" aria-label="All pages">
+        <ul class="menu-list">
+          <li><a href="index.html#self-assessment">Professional Self-Assessment</a></li>
+        </ul>
+        <p class="menu-heading">The application, stage by stage</p>
+        <ol class="menu-stages">
+          <li class="menu-stage"><a href="artifact.html#original"><span class="menu-stage-name">Original</span> <span class="menu-stage-note">CS 465</span></a></li>
+          <li class="menu-stage"><a href="code-review.html"><span class="menu-stage-name">Code review</span> <span class="menu-stage-note">Milestone One</span></a></li>
+          <li class="menu-stage"><a href="software-design.html"><span class="menu-stage-name">Software design</span> <span class="menu-stage-note">Enhancement One</span></a></li>
+          <li class="menu-stage"><a href="algorithms.html"><span class="menu-stage-name">Algorithms</span> <span class="menu-stage-note">Enhancement Two</span></a></li>
+          <li class="menu-stage is-current"><a href="databases.html" aria-current="page"><span class="menu-stage-name">Databases</span> <span class="menu-stage-note">Enhancement Three</span></a></li>
+          <li class="menu-stage"><a href="artifact.html#final"><span class="menu-stage-name">Final release</span> <span class="menu-stage-note">Version 1.0.1</span></a></li>
+        </ol>
+        <ul class="menu-list">
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
   
 <nav class="rail" aria-label="Portfolio stages">
   <ol class="rail-list">
-    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
-    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
-    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
-    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
-    <li class="rail-stage is-current"><a href="databases.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
-    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span> <span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span> <span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span> <span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span> <span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage is-current"><a href="databases.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span> <span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span> <span class="rail-note">Version 1.0.1</span></a></li>
   </ol>
 </nav>
 </header>
@@ -47,7 +67,7 @@
   <div><dt>Milestone</dt><dd>Milestone Four, October 2026, with additions in the final release</dd></div>
   <div><dt>Code at this stage</dt><dd><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-3-databases"><code>enhancement-3-databases</code></a></dd></div>
   <div><dt>Changes from Enhancement Two</dt><dd><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-2-algorithms...enhancement-3-databases">Compare on GitHub</a></dd></div>
-  <div><dt>Narrative</dt><dd><span class="link-stack"><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 52 KB</span></span></span></dd></div>
+  <div><dt>Narrative</dt><dd><span class="link-stack"><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 53 KB</span></span></span></dd></div>
 </dl>
   
 <nav class="toc" aria-label="On this page">
@@ -122,20 +142,21 @@
 <p>Three further decisions are equally specific. Payment dates and lesson times are stored differently, so each is grouped into months the way it was entered: a payment date is a calendar date stored as midnight UTC and is grouped in UTC, while a lesson time is grouped in local time. Grouping payments in local time would move a payment made on the first of a month into the previous month for any school west of Greenwich. Second, a whole-school monthly report had no usable index, because the compound index built for conflict detection leads with the teacher, and a compound index can only be used from its leading field. I added an index on the active flag and start time, so the report seeks straight to the month instead of scanning every lesson the school has ever run. Third, Mongoose stores the attendance model in a collection named attendances, and a MongoDB lookup that names a collection that does not exist returns nothing without raising any error. Every pipeline reads its collection names from the models.</p>
 <p>The enhancement also hardens the security of the database. Any object with a key beginning with a dollar sign is a MongoDB query operator, so a request containing &quot;teacherId&quot;: {&quot;$ne&quot;: null} would have turned a check for a specific teacher into a search that matches any teacher. Request bodies containing operators are now refused before any query runs, query strings are parsed flatly so that one cannot carry an operator either, and every report parameter must be an exact string. A teacher’s attendance sheet always uses the identity from their signed token and ignores any teacher named in the request. Teachers may also record attendance only for their own lessons; because students are billed per lesson attended, a teacher able to mark a student present at a colleague’s lesson could have added a charge to that student’s balance, and nothing previously prevented it. The spreadsheet export neutralizes any name beginning with a formula character, so a student entered as =HYPERLINK(…) cannot become a live formula on the accountant’s computer. Report responses are marked not to be cached. The application can now connect to a database that requires a password, using a least-privilege account restricted to its own database, and the password is hidden whenever the connection string is logged.</p>
 <p>The final release added one more control at the database level. Teachers could not record attendance from the interface, because the student list was refused to them, which left the attendance form’s choice of student empty. Granting teachers the full student list would have exposed contact details they do not need. Instead, each entity can now declare a projection per role, and MongoDB returns only first and last names to a teacher: the minimum needed to mark attendance, with email addresses and telephone numbers never leaving the database. The rule matches the exact role rather than an inherited one, so the owner, whose role includes every teacher permission, still receives complete records.</p>
+<p>These pipelines were verified on a real MongoDB server as well as in the tests. Run against a temporary database on a MongoDB server on my own computer, loaded with a small school whose every figure I had calculated by hand, the verification passed all 14 of its checks: every report’s figures matched, and MongoDB chose the intended index for the class summary and for the attendance sheet. The same verification passed again in continuous integration for the final release.</p>
 <p>The specific skills this enhancement demonstrates are MongoDB aggregation pipeline design with joins, grouping and date handling, index design for reporting queries, exact money arithmetic in whole cents, data modeling with references, defenses against query-operator and spreadsheet-formula injection, least privilege through projections and a restricted database account, and testing database code both in memory and on a real MongoDB server.</p>
 <h3 id="course-outcomes">Course outcomes</h3>
 <p>I planned to meet outcomes one, two and three with this enhancement, and I met all three. Outcome one is met because each report answers a decision a specific role in the school has to make, using figures drawn from recorded activity rather than estimates. Outcome two is met because the same underlying data is presented differently for each reader: a comparison for the owner, a reconcilable table and export for the accountant, and a checklist for the teacher. A single generic table would have been technically correct and practically useless to at least two of them. Outcome three is met through trade-offs I can state precisely. Attendance and payments reference students and sessions rather than embedding them, which is what allows the pipelines to join them at all. Each index is added only where a real query needs it, because every index slows every write. Money is converted to cents at calculation time rather than migrating stored values to a decimal type, which gives exact results without a data migration. And rates are read live because each session is a single dated lesson, so editing a past rate is a correction; if sessions were generated from a shared course template, each rate would need to be copied onto the attendance record instead, so that a price change could not rewrite past charges.</p>
 <p>I have one update to my coverage plan. This enhancement also demonstrates outcomes four and five, through the testing approach and the database security work described above. With this enhancement complete, all five course outcomes are demonstrated across the three enhancements:</p>
 
 <div class="table-wrap">
-<table>
+<table class="stack">
   <thead><tr><th scope="col">Course outcome</th><th scope="col">Where it is demonstrated</th></tr></thead>
   <tbody>
-    <tr><th scope="row">1. Collaborative environments supporting decision making</th><td>Enhancement One: owner, accountant and teacher roles with purpose-built access. Enhancement Three: reports built around each role’s own decision.</td></tr>
-    <tr><th scope="row">2. Professional communication adapted to audience</th><td>Enhancement Three: a different report format for each reader. Code review, plan, narratives and this portfolio.</td></tr>
-    <tr><th scope="row">3. Algorithmic principles and design trade-offs</th><td>Enhancement Two: O(n) against O(log n + k), with k proven at most 32. Enhancement Three: index, money and data-model trade-offs.</td></tr>
-    <tr><th scope="row">4. Well-founded and innovative techniques</th><td>Enhancement One: generic controller factory. Enhancement Two: bounded index search, keyed mutex. Enhancement Three: aggregation pipelines executed in tests and verified in MongoDB.</td></tr>
-    <tr><th scope="row">5. Security mindset</th><td>Enhancement One: role and ownership scoping, stored XSS fixed. Enhancement Two: booking race closed. Enhancement Three: injection defenses, least-privilege access, names-only projection.</td></tr>
+    <tr><th scope="row">1. Collaborative environments supporting decision making</th><td data-label="Where it is demonstrated">Enhancement One: owner, accountant and teacher roles with purpose-built access. Enhancement Three: reports built around each role’s own decision.</td></tr>
+    <tr><th scope="row">2. Professional communication adapted to audience</th><td data-label="Where it is demonstrated">Enhancement Three: a different report format for each reader. Code review, plan, narratives and this portfolio.</td></tr>
+    <tr><th scope="row">3. Algorithmic principles and design trade-offs</th><td data-label="Where it is demonstrated">Enhancement Two: O(n) against O(log n + k), with k proven at most 32. Enhancement Three: index, money and data-model trade-offs.</td></tr>
+    <tr><th scope="row">4. Well-founded and innovative techniques</th><td data-label="Where it is demonstrated">Enhancement One: generic controller factory. Enhancement Two: bounded index search, keyed mutex. Enhancement Three: aggregation pipelines executed in tests and verified in MongoDB.</td></tr>
+    <tr><th scope="row">5. Security mindset</th><td data-label="Where it is demonstrated">Enhancement One: role and ownership scoping, stored XSS fixed. Enhancement Two: booking race closed. Enhancement Three: injection defenses, least-privilege access, names-only projection.</td></tr>
   </tbody>
 </table>
 </div>

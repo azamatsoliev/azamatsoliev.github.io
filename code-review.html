@@ -22,16 +22,36 @@
   <div class="bar">
     <a class="wordmark" href="index.html">Azamat Soliev</a>
     <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+    <details class="menu">
+      <summary class="menu-button"><span class="menu-icon" aria-hidden="true"></span><span>Menu</span></summary>
+      <nav class="menu-panel" aria-label="All pages">
+        <ul class="menu-list">
+          <li><a href="index.html#self-assessment">Professional Self-Assessment</a></li>
+        </ul>
+        <p class="menu-heading">The application, stage by stage</p>
+        <ol class="menu-stages">
+          <li class="menu-stage"><a href="artifact.html#original"><span class="menu-stage-name">Original</span> <span class="menu-stage-note">CS 465</span></a></li>
+          <li class="menu-stage is-current"><a href="code-review.html" aria-current="page"><span class="menu-stage-name">Code review</span> <span class="menu-stage-note">Milestone One</span></a></li>
+          <li class="menu-stage"><a href="software-design.html"><span class="menu-stage-name">Software design</span> <span class="menu-stage-note">Enhancement One</span></a></li>
+          <li class="menu-stage"><a href="algorithms.html"><span class="menu-stage-name">Algorithms</span> <span class="menu-stage-note">Enhancement Two</span></a></li>
+          <li class="menu-stage"><a href="databases.html"><span class="menu-stage-name">Databases</span> <span class="menu-stage-note">Enhancement Three</span></a></li>
+          <li class="menu-stage"><a href="artifact.html#final"><span class="menu-stage-name">Final release</span> <span class="menu-stage-note">Version 1.0.1</span></a></li>
+        </ol>
+        <ul class="menu-list">
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
   
 <nav class="rail" aria-label="Portfolio stages">
   <ol class="rail-list">
-    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
-    <li class="rail-stage is-current"><a href="code-review.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
-    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
-    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
-    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
-    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span> <span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage is-current"><a href="code-review.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span> <span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span> <span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span> <span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span> <span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span> <span class="rail-note">Version 1.0.1</span></a></li>
   </ol>
 </nav>
 </header>
@@ -65,19 +85,19 @@
   <p>Every defect identified in the review was corrected in the enhancement work.</p>
 </section>
 <div class="table-wrap is-wide">
-<table class="findings">
+<table class="stack findings">
   <thead><tr><th scope="col">Finding in the review</th><th scope="col">What changed</th><th scope="col">Where</th></tr></thead>
   <tbody>
-    <tr><th scope="row">Five controller functions repeating one shape: authorize, query, check, respond</th><td>Replaced by one generic controller factory that serves all five school records</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
-    <tr><th scope="row">An unreachable branch in the token check, answering HTTP 501</th><td>Header parsing rewritten; a missing or malformed token receives 401</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
-    <tr><th scope="row">The API address written into the travel page controller</th><td>Read from configuration. In the final release the travel page was retired, and the interface reads its API address from one environment file</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
-    <tr><th scope="row">Passwords hashed with PBKDF2 at 1,000 iterations</th><td>Raised to 210,000, with each existing hash upgraded at its next sign-in. Version 1.0.1 fixed the upgrade for accounts loaded from the database</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
-    <tr><th scope="row">No concept of user roles</th><td>Owner, accountant and teacher roles, with checks on every action, record and field</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
-    <tr><th scope="row">Request bodies not validated beyond the schema</th><td>Each kind of record accepts only its writable fields; request bodies carrying database operators are refused</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="databases.html">Enhancement Three</a></span></td></tr>
-    <tr><th scope="row">Every query returns all records or one record by key; nothing compares records</th><td>Scheduling conflict detection with a bounded index search, O(log n + k)</td><td><span class="link-stack"><a href="algorithms.html">Enhancement Two</a></span></td></tr>
-    <tr><th scope="row">Two unrelated schemas, single-field indexes only, no aggregation</th><td>Referenced relationships, compound indexes and five aggregation pipelines</td><td><span class="link-stack"><a href="databases.html">Enhancement Three</a></span></td></tr>
-    <tr><th scope="row">Database content rendered unescaped on the public travel page: stored cross-site scripting</th><td>Escaped in Enhancement One; the server-rendered pages were removed in the final release</td><td><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
-    <tr><th scope="row">No file headers recording purpose or authorship</th><td>A header with purpose, author, version and date on every source file</td><td><span class="link-stack"><a href="artifact.html#final">Final release</a></span></td></tr>
+    <tr><th scope="row">Five controller functions repeating one shape: authorize, query, check, respond</th><td data-label="What changed">Replaced by one generic controller factory that serves all five school records</td><td data-label="Where"><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
+    <tr><th scope="row">An unreachable branch in the token check, answering HTTP 501</th><td data-label="What changed">Header parsing rewritten; a missing or malformed token receives 401</td><td data-label="Where"><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
+    <tr><th scope="row">The API address written into the travel page controller</th><td data-label="What changed">Read from configuration. In the final release the travel page was retired, and the interface reads its API address from one environment file</td><td data-label="Where"><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
+    <tr><th scope="row">Passwords hashed with PBKDF2 at 1,000 iterations</th><td data-label="What changed">Raised to 210,000, with each existing hash upgraded at its next sign-in. Version 1.0.1 fixed the upgrade for accounts loaded from the database</td><td data-label="Where"><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
+    <tr><th scope="row">No concept of user roles</th><td data-label="What changed">Owner, accountant and teacher roles, with checks on every action, record and field</td><td data-label="Where"><span class="link-stack"><a href="software-design.html">Enhancement One</a></span></td></tr>
+    <tr><th scope="row">Request bodies not validated beyond the schema</th><td data-label="What changed">Each kind of record accepts only its writable fields; request bodies carrying database operators are refused</td><td data-label="Where"><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="databases.html">Enhancement Three</a></span></td></tr>
+    <tr><th scope="row">Every query returns all records or one record by key; nothing compares records</th><td data-label="What changed">Scheduling conflict detection with a bounded index search, O(log n + k)</td><td data-label="Where"><span class="link-stack"><a href="algorithms.html">Enhancement Two</a></span></td></tr>
+    <tr><th scope="row">Two unrelated schemas, single-field indexes only, no aggregation</th><td data-label="What changed">Referenced relationships, compound indexes and five aggregation pipelines</td><td data-label="Where"><span class="link-stack"><a href="databases.html">Enhancement Three</a></span></td></tr>
+    <tr><th scope="row">Database content rendered unescaped on the public travel page: stored cross-site scripting</th><td data-label="What changed">Escaped in Enhancement One; the server-rendered pages were removed in the final release</td><td data-label="Where"><span class="link-stack"><a href="software-design.html">Enhancement One</a><a href="artifact.html#final">Final release</a></span></td></tr>
+    <tr><th scope="row">No file headers recording purpose or authorship</th><td data-label="What changed">A header with purpose, author, version and date on every source file</td><td data-label="Where"><span class="link-stack"><a href="artifact.html#final">Final release</a></span></td></tr>
   </tbody>
 </table>
 </div>

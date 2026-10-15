@@ -222,6 +222,110 @@ code {
 }
 .rail-stage.is-current .rail-note { color: var(--on-ink); }
 
+/* Menu for narrow screens, where it replaces the page links and the rail. */
+.menu { display: none; }
+.menu-button {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  margin-right: -0.75rem;
+  border-radius: 6px;
+  color: var(--on-ink);
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+.menu-button::-webkit-details-marker { display: none; }
+.menu-button:hover { background: rgba(255, 255, 255, 0.08); }
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 1.125rem;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+}
+.menu-icon { position: relative; }
+.menu-icon::before,
+.menu-icon::after { content: ''; position: absolute; left: 0; }
+.menu-icon::before { top: -6px; }
+.menu-icon::after { top: 6px; }
+.menu[open] .menu-icon { background: transparent; }
+.menu[open] .menu-icon::before { top: 0; transform: rotate(45deg); }
+.menu[open] .menu-icon::after { top: 0; transform: rotate(-45deg); }
+.menu-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 20;
+  max-height: calc(100vh - 4rem);
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  padding: 0.5rem var(--gutter) 1.25rem;
+  background: var(--ink);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 16px 32px rgba(20, 33, 61, 0.3);
+}
+.menu-list,
+.menu-stages { list-style: none; margin: 0; padding: 0; }
+.menu-panel a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.3rem 0;
+  color: var(--on-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+.menu-panel a:hover { text-decoration: underline; }
+.menu-list a[aria-current='page'] { text-decoration: underline; text-decoration-thickness: 2px; }
+.menu-heading { margin: 0.75rem 0 0.15rem; font-size: 0.8125rem; color: var(--on-ink-soft); }
+.menu-stages { position: relative; margin-bottom: 0.25rem; }
+.menu-stages::before {
+  content: '';
+  position: absolute;
+  left: calc(0.5rem - 1px);
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
+}
+.menu-stage a { position: relative; padding-left: 2rem; line-height: 1.3; }
+.menu-stage a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.5rem;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid #9fb3d6;
+}
+.menu-stage.is-current a::before {
+  background: #7fb0f5;
+  border-color: var(--on-ink);
+  box-shadow: 0 0 0 4px rgba(127, 176, 245, 0.28);
+}
+.menu-stage-note { font-weight: 400; font-size: 0.8125rem; color: var(--on-ink-soft); }
+.menu-stage.is-current .menu-stage-note { color: var(--on-ink); }
+
+/* Below the width the six stages need, the menu takes over. */
+@media (max-width: 46rem) {
+  .site-header { position: relative; }
+  .bar { flex-wrap: nowrap; align-items: center; padding-block: 0.5rem; }
+  .bar-links,
+  .rail { display: none; }
+  .menu { display: block; }
+}
+
 /* ----- Page structure ----- */
 
 main { display: block; flex: 1 0 auto; padding-bottom: 1rem; }
@@ -450,6 +554,23 @@ figcaption {
 .figure-scroll { overflow-x: auto; }
 .chart-svg,
 .diagram-svg { display: block; width: 100%; min-width: 36rem; height: auto; }
+
+/* Each figure has a wide version and a version drawn for phones. */
+.figure-narrow { display: none; }
+@media (max-width: 44rem) {
+  .figure-wide { display: none; }
+  .figure-narrow { display: block; max-width: 26rem; margin-inline: auto; }
+  .figure-narrow .chart-svg,
+  .figure-narrow .diagram-svg { min-width: 0; }
+}
+/* Labels drawn over grid lines keep a margin of background around them. */
+.chart-svg.is-narrow .end-label,
+.chart-svg.is-narrow .end-note {
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
 .table-note { font-size: 0.8125rem; color: var(--muted); margin: 0.5rem 0 0; }
 
 .shot {
@@ -548,6 +669,8 @@ figcaption {
 .diagram-svg .lesson-proposed { fill: var(--accent); }
 .diagram-svg .conflict-label { font-family: var(--sans); font-size: 12.5px; font-weight: 700; fill: #ffffff; }
 .diagram-svg .proposed-label { font-family: var(--sans); font-size: 13px; font-weight: 700; fill: var(--ink); }
+.diagram-svg .proposed-label-inside { font-family: var(--sans); font-size: 13px; font-weight: 700; fill: #ffffff; }
+.diagram-svg .window-note { font-family: var(--sans); font-size: 12.5px; fill: var(--accent-strong); }
 .diagram-svg .axis { stroke: var(--rule-strong); }
 .diagram-svg .tickline { stroke: var(--rule-strong); }
 .diagram-svg .tick { font-family: var(--sans); font-size: 13px; fill: var(--muted); }
@@ -728,24 +851,99 @@ pre.console code { background: none; border: 0; padding: 0; font-size: inherit; 
 .footer-role { margin: 0.25rem 0 1rem; font-size: 0.9375rem; }
 .site-footer .contact-list a { color: var(--on-ink); }
 
+/* ----- Sideways scrolling ----- */
+
+/* Shown by site.js above a figure or output that is wider than the screen. */
+.scroll-hint {
+  margin: 0 0 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
 /* ----- Small screens ----- */
 
 @media (max-width: 40rem) {
   :root { --gutter: 1rem; }
-  .bar { padding-top: 0.85rem; }
-  .bar-links a[href="#contact"] { display: none; }
-  .rail {
-    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
-    mask-image: linear-gradient(to right, #000 85%, transparent);
-  }
-  .rail-list { grid-template-columns: repeat(6, 7.25rem); width: max-content; }
+  h1 { font-size: clamp(1.875rem, 1.4rem + 2.2vw, 3rem); }
   .hero { padding-top: 2.25rem; }
   .page-head { padding-top: 2.25rem; }
   .prose p, .prose li { font-size: 1.0625rem; }
   .diagram-panel { padding: 1rem; }
   .money-label { display: block; }
   .lead, .hero-lead { font-size: 1.125rem; }
-  table.findings td:last-child, table.stages td:last-child { white-space: normal; }
+
+  /* The email address on its own line, the two profile links beneath it. */
+  .hero-contacts { gap: 0 1.75rem; }
+  .hero-contacts li:first-child { flex-basis: 100%; }
+
+  /* Tables become a stack of cards: the row heading first, then each cell
+     under its column name. The column names stay available to screen readers
+     through the table headers (see site.js), so the labels are not read twice. */
+  table.stack,
+  table.stack tbody,
+  table.stack tr,
+  table.stack th,
+  table.stack td { display: block; width: auto !important; }
+  table.stack { border: 0; background: none; }
+  table.stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  table.stack tbody tr {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 0.85rem 1rem 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  table.stack tbody tr:last-child { margin-bottom: 0; }
+  table.stack tbody tr > * { border: 0; padding: 0; white-space: normal !important; }
+  table.stack tbody th { font-size: 1rem; font-weight: 700; }
+  table.stack td { margin-top: 0.65rem; }
+  table.stack td[data-label]::before {
+    content: attr(data-label);
+    content: attr(data-label) / '';
+    display: block;
+    margin-bottom: 0.1rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  table.stack .link-stack { flex-direction: row; flex-wrap: wrap; gap: 0 1.5rem; }
+  table.stack .link-stack > a,
+  table.stack .link-stack > span { padding: 0.35rem 0; }
+  table.stack .outcome-full { font-size: 0.875rem; }
+
+  /* Figures: each label and its value on one line. */
+  table.stack-pairs tbody tr { padding: 0.35rem 1rem; }
+  table.stack-pairs tbody tr > * {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 0;
+    padding: 0.45rem 0;
+    font-weight: 400;
+    text-align: right;
+  }
+  table.stack-pairs tbody tr > * + * { border-top: 1px solid var(--rule); }
+  table.stack-pairs tbody th { font-weight: 700; }
+  table.stack-pairs tbody tr > [data-label]::before {
+    content: attr(data-label);
+    content: attr(data-label) / '';
+    display: inline;
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--muted);
+    text-align: left;
+  }
 }
 
 @media print {

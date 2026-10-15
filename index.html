@@ -22,16 +22,36 @@
   <div class="bar">
     <a class="wordmark" href="index.html" aria-current="page">Azamat Soliev</a>
     <p class="bar-links"><a href="index.html#self-assessment" class="is-current">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+    <details class="menu">
+      <summary class="menu-button"><span class="menu-icon" aria-hidden="true"></span><span>Menu</span></summary>
+      <nav class="menu-panel" aria-label="All pages">
+        <ul class="menu-list">
+          <li><a href="index.html#self-assessment" aria-current="page">Professional Self-Assessment</a></li>
+        </ul>
+        <p class="menu-heading">The application, stage by stage</p>
+        <ol class="menu-stages">
+          <li class="menu-stage"><a href="artifact.html#original"><span class="menu-stage-name">Original</span> <span class="menu-stage-note">CS 465</span></a></li>
+          <li class="menu-stage"><a href="code-review.html"><span class="menu-stage-name">Code review</span> <span class="menu-stage-note">Milestone One</span></a></li>
+          <li class="menu-stage"><a href="software-design.html"><span class="menu-stage-name">Software design</span> <span class="menu-stage-note">Enhancement One</span></a></li>
+          <li class="menu-stage"><a href="algorithms.html"><span class="menu-stage-name">Algorithms</span> <span class="menu-stage-note">Enhancement Two</span></a></li>
+          <li class="menu-stage"><a href="databases.html"><span class="menu-stage-name">Databases</span> <span class="menu-stage-note">Enhancement Three</span></a></li>
+          <li class="menu-stage"><a href="artifact.html#final"><span class="menu-stage-name">Final release</span> <span class="menu-stage-note">Version 1.0.1</span></a></li>
+        </ol>
+        <ul class="menu-list">
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
   
 <nav class="rail" aria-label="Portfolio stages">
   <ol class="rail-list">
-    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
-    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
-    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
-    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
-    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
-    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span> <span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span> <span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span> <span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span> <span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span> <span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span> <span class="rail-note">Version 1.0.1</span></a></li>
   </ol>
 </nav>
 </header>
@@ -125,14 +145,14 @@
   <p>The five course outcomes of the program, and the specific skills in this portfolio that demonstrate each one:</p>
 </section>
 <div class="table-wrap is-wide">
-<table class="outcomes">
+<table class="stack outcomes">
   <thead><tr><th scope="col">Course outcome</th><th scope="col">Specific skills and where they are demonstrated</th></tr></thead>
   <tbody>
-    <tr><th scope="row"><span class="outcome-short">1. Collaborative environments</span><span class="outcome-full">Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision-making in the field of computer science.</span></th><td>Designing for several audiences: owner, accountant and teacher roles, each with access built for its own work, in <a href="software-design.html">Enhancement One</a>, and reports organized around each role’s decisions in <a href="databases.html">Enhancement Three</a>. Making work easy for others to review and build on: a <a href="code-review.html">code review</a> recorded for peers and a manager, explanatory comments and a header on every source file, a tagged history, and automated checks on every change.</td></tr>
-    <tr><th scope="row"><span class="outcome-short">2. Professional communication</span><span class="outcome-full">Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.</span></th><td>Adapting one message to different audiences and forms: the recorded <a href="code-review.html">code review</a> (oral and visual), the narratives and this self-assessment (written), the diagrams and charts on each enhancement page (visual), a report format for each reader in <a href="databases.html">Enhancement Three</a>, and README, architecture, security and testing guides for developers.</td></tr>
-    <tr><th scope="row"><span class="outcome-short">3. Algorithms and trade-offs</span><span class="outcome-full">Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices.</span></th><td>Algorithm analysis and design: replacing an O(n) scan with an O(log n + k) bounded index search, proving that k never exceeds 32, measuring both with a benchmark, and checking them against each other on 5,000 random cases in <a href="algorithms.html">Enhancement Two</a>. Weighing index, money and data-model trade-offs in <a href="databases.html">Enhancement Three</a>.</td></tr>
-    <tr><th scope="row"><span class="outcome-short">4. Well-founded techniques</span><span class="outcome-full">Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.</span></th><td>Applying established patterns and tools: a generic controller factory and a configuration-driven interface in <a href="software-design.html">Enhancement One</a>, compound indexes and a keyed lock in <a href="algorithms.html">Enhancement Two</a>, and MongoDB aggregation pipelines in <a href="databases.html">Enhancement Three</a>. Testing iteratively: 214 backend tests, 69 interface tests and five end-to-end tests, run by continuous integration on every change.</td></tr>
-    <tr><th scope="row"><span class="outcome-short">5. Security mindset</span><span class="outcome-full">Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.</span></th><td>Finding and closing vulnerabilities: role, record and field checks and a stored cross-site scripting fix in <a href="software-design.html">Enhancement One</a>; a booking race closed in <a href="algorithms.html">Enhancement Two</a>; defenses against query-operator and spreadsheet-formula injection, support for a least-privilege database account, and a names-only projection for teachers in <a href="databases.html">Enhancement Three</a>; and two defects found in review and fixed with tests in the <a href="artifact.html#final">final release</a>.</td></tr>
+    <tr><th scope="row"><span class="outcome-short">1. Collaborative environments</span><span class="outcome-full">Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision-making in the field of computer science.</span></th><td data-label="Specific skills and where they are demonstrated">Designing for several audiences: owner, accountant and teacher roles, each with access built for its own work, in <a href="software-design.html">Enhancement One</a>, and reports organized around each role’s decisions in <a href="databases.html">Enhancement Three</a>. Making work easy for others to review and build on: a <a href="code-review.html">code review</a> recorded for peers and a manager, explanatory comments and a header on every source file, a tagged history, and automated checks on every change.</td></tr>
+    <tr><th scope="row"><span class="outcome-short">2. Professional communication</span><span class="outcome-full">Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.</span></th><td data-label="Specific skills and where they are demonstrated">Adapting one message to different audiences and forms: the recorded <a href="code-review.html">code review</a> (oral and visual), the narratives and this self-assessment (written), the diagrams and charts on each enhancement page (visual), a report format for each reader in <a href="databases.html">Enhancement Three</a>, and README, architecture, security and testing guides for developers.</td></tr>
+    <tr><th scope="row"><span class="outcome-short">3. Algorithms and trade-offs</span><span class="outcome-full">Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices.</span></th><td data-label="Specific skills and where they are demonstrated">Algorithm analysis and design: replacing an O(n) scan with an O(log n + k) bounded index search, proving that k never exceeds 32, measuring both with a benchmark, and checking them against each other on 5,000 random cases in <a href="algorithms.html">Enhancement Two</a>. Weighing index, money and data-model trade-offs in <a href="databases.html">Enhancement Three</a>.</td></tr>
+    <tr><th scope="row"><span class="outcome-short">4. Well-founded techniques</span><span class="outcome-full">Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.</span></th><td data-label="Specific skills and where they are demonstrated">Applying established patterns and tools: a generic controller factory and a configuration-driven interface in <a href="software-design.html">Enhancement One</a>, compound indexes and a keyed lock in <a href="algorithms.html">Enhancement Two</a>, and MongoDB aggregation pipelines in <a href="databases.html">Enhancement Three</a>. Testing iteratively: 214 backend tests, 69 interface tests and five end-to-end tests, run by continuous integration on every change.</td></tr>
+    <tr><th scope="row"><span class="outcome-short">5. Security mindset</span><span class="outcome-full">Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.</span></th><td data-label="Specific skills and where they are demonstrated">Finding and closing vulnerabilities: role, record and field checks and a stored cross-site scripting fix in <a href="software-design.html">Enhancement One</a>; a booking race closed in <a href="algorithms.html">Enhancement Two</a>; defenses against query-operator and spreadsheet-formula injection, support for a least-privilege database account, and a names-only projection for teachers in <a href="databases.html">Enhancement Three</a>; and two defects found in review and fixed with tests in the <a href="artifact.html#final">final release</a>.</td></tr>
   </tbody>
 </table>
 </div>
@@ -140,18 +160,18 @@
 <section class="prose files" aria-labelledby="files">
   <h2 id="files">Files for download</h2>
   <p>Static copies of everything in this portfolio. The code is also on GitHub, with every stage tagged: <a href="https://github.com/azamatsoliev/azamat-school-admin">azamatsoliev/azamat-school-admin</a>.</p>
-  <table class="file-table">
-    <thead><tr><th scope="col">Item</th><th scope="col">Files</th></tr></thead>
-    <tbody>
-      <tr><th scope="row">Professional self-assessment</th><td><span class="link-stack"><span><a href="assets/downloads/01_Professional_Self_Assessment_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 16 KB</span></span><span><a href="assets/downloads/01_Professional_Self_Assessment_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 61 KB</span></span></span></td></tr>
-      <tr><th scope="row">Code review video</th><td><a href="https://youtu.be/u06APioXnVo">Watch on YouTube</a></td></tr>
-      <tr><th scope="row">Enhancement One narrative: software design and engineering</th><td><span class="link-stack"><span><a href="assets/downloads/03_Narrative_Enhancement_One_Software_Design_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/03_Narrative_Enhancement_One_Software_Design_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 46 KB</span></span></span></td></tr>
-      <tr><th scope="row">Enhancement Two narrative: algorithms and data structures</th><td><span class="link-stack"><span><a href="assets/downloads/04_Narrative_Enhancement_Two_Algorithms_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 14 KB</span></span><span><a href="assets/downloads/04_Narrative_Enhancement_Two_Algorithms_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 52 KB</span></span></span></td></tr>
-      <tr><th scope="row">Enhancement Three narrative: databases</th><td><span class="link-stack"><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 52 KB</span></span></span></td></tr>
-      <tr><th scope="row">Original code: Travlr Getaways, CS 465</th><td><a href="assets/downloads/06_Original_Code_Travlr_Getaways_Soliev.zip" download>ZIP archive</a> <span class="file-meta">ZIP, 1.6 MB</span></td></tr>
-      <tr><th scope="row">Enhanced code: Azamat School Admin 1.0.1</th><td><a href="assets/downloads/07_Enhanced_Code_Azamat_School_Admin_v1.0.1_Soliev.zip" download>ZIP archive</a> <span class="file-meta">ZIP, 335 KB</span></td></tr>
-    </tbody>
-  </table>
+<table class="stack file-table">
+  <thead><tr><th scope="col">Item</th><th scope="col">Files</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Professional self-assessment</th><td data-label="Files"><span class="link-stack"><span><a href="assets/downloads/01_Professional_Self_Assessment_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 16 KB</span></span><span><a href="assets/downloads/01_Professional_Self_Assessment_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 61 KB</span></span></span></td></tr>
+    <tr><th scope="row">Code review video</th><td data-label="Files"><a href="https://youtu.be/u06APioXnVo">Watch on YouTube</a></td></tr>
+    <tr><th scope="row">Enhancement One narrative: software design and engineering</th><td data-label="Files"><span class="link-stack"><span><a href="assets/downloads/03_Narrative_Enhancement_One_Software_Design_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/03_Narrative_Enhancement_One_Software_Design_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 46 KB</span></span></span></td></tr>
+    <tr><th scope="row">Enhancement Two narrative: algorithms and data structures</th><td data-label="Files"><span class="link-stack"><span><a href="assets/downloads/04_Narrative_Enhancement_Two_Algorithms_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 14 KB</span></span><span><a href="assets/downloads/04_Narrative_Enhancement_Two_Algorithms_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 52 KB</span></span></span></td></tr>
+    <tr><th scope="row">Enhancement Three narrative: databases</th><td data-label="Files"><span class="link-stack"><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/05_Narrative_Enhancement_Three_Databases_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 53 KB</span></span></span></td></tr>
+    <tr><th scope="row">Original code: Travlr Getaways, CS 465</th><td data-label="Files"><a href="assets/downloads/06_Original_Code_Travlr_Getaways_Soliev.zip" download>ZIP archive</a> <span class="file-meta">ZIP, 1.6 MB</span></td></tr>
+    <tr><th scope="row">Enhanced code: Azamat School Admin 1.0.1</th><td data-label="Files"><a href="assets/downloads/07_Enhanced_Code_Azamat_School_Admin_v1.0.1_Soliev.zip" download>ZIP archive</a> <span class="file-meta">ZIP, 335 KB</span></td></tr>
+  </tbody>
+</table>
 </section>
 
 <nav class="pager" aria-label="Previous and next pages">

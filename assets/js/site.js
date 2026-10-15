@@ -9,10 +9,43 @@
     }
   }
 
+  // The menu on narrow screens is a native disclosure. Close it once a link is
+  // chosen (a link to a section of the same page would otherwise leave it
+  // open), when Escape is pressed, and when the page outside it is selected.
+  var menu = document.querySelector('.menu');
+  if (menu) {
+    var summary = menu.querySelector('summary');
+    menu.addEventListener('click', function (event) {
+      if (event.target.closest('a')) menu.open = false;
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary.focus();
+      }
+    });
+    document.addEventListener('click', function (event) {
+      if (menu.open && !menu.contains(event.target)) menu.open = false;
+    });
+  }
+
+  // On phones, tables are restyled as stacks of cards. Some browsers stop
+  // treating a restyled table as a table, so its roles are stated explicitly
+  // and screen readers keep announcing each cell with its column heading.
+  var roles = { TABLE: 'table', THEAD: 'rowgroup', TBODY: 'rowgroup', TR: 'row', TD: 'cell' };
+  Array.prototype.forEach.call(document.querySelectorAll('table.stack, table.stack *'), function (node) {
+    if (node.tagName === 'TH') {
+      node.setAttribute('role', node.getAttribute('scope') === 'row' ? 'rowheader' : 'columnheader');
+    } else if (roles[node.tagName]) {
+      node.setAttribute('role', roles[node.tagName]);
+    }
+  });
+
   // A table or figure wider than the screen scrolls inside its own box. Make that
   // box reachable from the keyboard, and name it for screen readers, only when it
-  // actually scrolls.
+  // actually scrolls. Above a figure or output that scrolls, say so.
   var regions = document.querySelectorAll('.table-wrap, .figure-scroll');
+  var scrollers = document.querySelectorAll('.figure-scroll, .console-scroll');
   var headings = Array.prototype.slice.call(document.querySelectorAll('main h1, main h2, main h3'));
 
   // Names each region after its chart title or the heading it sits under, so
@@ -35,11 +68,32 @@
     return name;
   }
 
+  function scrolls(box) {
+    return box.scrollWidth > box.clientWidth + 1;
+  }
+
+  // The hint repeats what the region's name already says, so it is hidden from
+  // screen readers.
+  function hintFor(box) {
+    var hint = box.previousElementSibling;
+    if (!hint || !hint.classList.contains('scroll-hint')) {
+      hint = document.createElement('p');
+      hint.className = 'scroll-hint';
+      hint.setAttribute('aria-hidden', 'true');
+      hint.textContent = box.classList.contains('console-scroll')
+        ? 'Scroll sideways to read each full line →'
+        : 'Scroll sideways to see the whole figure →';
+      hint.hidden = true;
+      box.parentNode.insertBefore(hint, box);
+    }
+    return hint;
+  }
+
   function update() {
     var used = {};
     for (var i = 0; i < regions.length; i++) {
       var region = regions[i];
-      if (region.scrollWidth > region.clientWidth + 1) {
+      if (scrolls(region)) {
         region.setAttribute('tabindex', '0');
         region.setAttribute('role', 'region');
         region.setAttribute('aria-label', nameFor(region, used));
@@ -47,6 +101,13 @@
         region.removeAttribute('tabindex');
         region.removeAttribute('role');
         region.removeAttribute('aria-label');
+      }
+    }
+    for (var j = 0; j < scrollers.length; j++) {
+      var box = scrollers[j];
+      var wide = box.offsetParent !== null && scrolls(box);
+      if (wide || box.previousElementSibling && box.previousElementSibling.classList.contains('scroll-hint')) {
+        hintFor(box).hidden = !wide;
       }
     }
   }
@@ -99,6 +160,7 @@
         if (!text) return;
         block.querySelector('code').textContent = text;
         block.hidden = false;
+        update();
       })
       .catch(function () { /* not added yet: the block stays hidden */ });
   });

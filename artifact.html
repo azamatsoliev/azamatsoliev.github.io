@@ -22,16 +22,36 @@
   <div class="bar">
     <a class="wordmark" href="index.html">Azamat Soliev</a>
     <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+    <details class="menu">
+      <summary class="menu-button"><span class="menu-icon" aria-hidden="true"></span><span>Menu</span></summary>
+      <nav class="menu-panel" aria-label="All pages">
+        <ul class="menu-list">
+          <li><a href="index.html#self-assessment">Professional Self-Assessment</a></li>
+        </ul>
+        <p class="menu-heading">The application, stage by stage</p>
+        <ol class="menu-stages">
+          <li class="menu-stage is-current"><a href="artifact.html#original"><span class="menu-stage-name">Original</span> <span class="menu-stage-note">CS 465</span></a></li>
+          <li class="menu-stage"><a href="code-review.html"><span class="menu-stage-name">Code review</span> <span class="menu-stage-note">Milestone One</span></a></li>
+          <li class="menu-stage"><a href="software-design.html"><span class="menu-stage-name">Software design</span> <span class="menu-stage-note">Enhancement One</span></a></li>
+          <li class="menu-stage"><a href="algorithms.html"><span class="menu-stage-name">Algorithms</span> <span class="menu-stage-note">Enhancement Two</span></a></li>
+          <li class="menu-stage"><a href="databases.html"><span class="menu-stage-name">Databases</span> <span class="menu-stage-note">Enhancement Three</span></a></li>
+          <li class="menu-stage is-current"><a href="artifact.html#final"><span class="menu-stage-name">Final release</span> <span class="menu-stage-note">Version 1.0.1</span></a></li>
+        </ol>
+        <ul class="menu-list">
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </details>
   </div>
   
 <nav class="rail" aria-label="Portfolio stages">
   <ol class="rail-list">
-    <li class="rail-stage is-current"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span><span class="rail-note">CS 465</span></a></li>
-    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span><span class="rail-note">Milestone One</span></a></li>
-    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span><span class="rail-note">Enhancement One</span></a></li>
-    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span><span class="rail-note">Enhancement Two</span></a></li>
-    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span><span class="rail-note">Enhancement Three</span></a></li>
-    <li class="rail-stage is-current"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span><span class="rail-note">Version 1.0.1</span></a></li>
+    <li class="rail-stage is-current"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span> <span class="rail-note">CS 465</span></a></li>
+    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span> <span class="rail-note">Milestone One</span></a></li>
+    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span> <span class="rail-note">Enhancement One</span></a></li>
+    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span> <span class="rail-note">Enhancement Two</span></a></li>
+    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span> <span class="rail-note">Enhancement Three</span></a></li>
+    <li class="rail-stage is-current"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span> <span class="rail-note">Version 1.0.1</span></a></li>
   </ol>
 </nav>
 </header>
@@ -87,18 +107,18 @@
   <h2 id="side-by-side">Side by side</h2>
 </section>
 <div class="table-wrap is-wide">
-<table class="compare">
+<table class="stack compare">
   <thead><tr><th scope="col"><span class="visually-hidden">Aspect</span></th><th scope="col">Original (CS 465)</th><th scope="col">Enhanced (1.0.1)</th></tr></thead>
   <tbody>
-    <tr><th scope="row">Purpose</th><td>Travel booking site with an administrator screen</td><td>Management platform for a small language school</td></tr>
-    <tr><th scope="row">Records</th><td>Trips</td><td>Students, teachers, class sessions, payments and attendance</td></tr>
-    <tr><th scope="row">Users</th><td>One kind of administrator, signed in or not</td><td>Owner, accountant and teacher, each with a scoped view</td></tr>
-    <tr><th scope="row">Accounts</th><td>Anyone could register through the API</td><td>Created by an owner; the first owner from the command line</td></tr>
-    <tr><th scope="row">Passwords</th><td>PBKDF2 at 1,000 iterations</td><td>PBKDF2 at 210,000 iterations, upgraded at sign-in; sign-in attempts rate-limited</td></tr>
-    <tr><th scope="row">Data access</th><td>Every record, or one record by key</td><td>Scoped queries, a bounded conflict search and five aggregation pipelines</td></tr>
-    <tr><th scope="row">Interfaces</th><td>Server-rendered travel pages and an Angular administrator screen</td><td>REST API and a rebuilt Angular interface</td></tr>
-    <tr><th scope="row">Automated tests</th><td>The specs Angular generates with each component; none for the API</td><td>214 backend tests, 69 interface tests and 5 end-to-end tests, run on every change</td></tr>
-    <tr><th scope="row">Documentation</th><td>Code comments</td><td>README, architecture, security and testing guides, and a changelog</td></tr>
+    <tr><th scope="row">Purpose</th><td data-label="Original (CS 465)">Travel booking site with an administrator screen</td><td data-label="Enhanced (1.0.1)">Management platform for a small language school</td></tr>
+    <tr><th scope="row">Records</th><td data-label="Original (CS 465)">Trips</td><td data-label="Enhanced (1.0.1)">Students, teachers, class sessions, payments and attendance</td></tr>
+    <tr><th scope="row">Users</th><td data-label="Original (CS 465)">One kind of administrator, signed in or not</td><td data-label="Enhanced (1.0.1)">Owner, accountant and teacher, each with a scoped view</td></tr>
+    <tr><th scope="row">Accounts</th><td data-label="Original (CS 465)">Anyone could register through the API</td><td data-label="Enhanced (1.0.1)">Created by an owner; the first owner from the command line</td></tr>
+    <tr><th scope="row">Passwords</th><td data-label="Original (CS 465)">PBKDF2 at 1,000 iterations</td><td data-label="Enhanced (1.0.1)">PBKDF2 at 210,000 iterations, upgraded at sign-in; sign-in attempts rate-limited</td></tr>
+    <tr><th scope="row">Data access</th><td data-label="Original (CS 465)">Every record, or one record by key</td><td data-label="Enhanced (1.0.1)">Scoped queries, a bounded conflict search and five aggregation pipelines</td></tr>
+    <tr><th scope="row">Interfaces</th><td data-label="Original (CS 465)">Server-rendered travel pages and an Angular administrator screen</td><td data-label="Enhanced (1.0.1)">REST API and a rebuilt Angular interface</td></tr>
+    <tr><th scope="row">Automated tests</th><td data-label="Original (CS 465)">The specs Angular generates with each component; none for the API</td><td data-label="Enhanced (1.0.1)">214 backend tests, 69 interface tests and 5 end-to-end tests, run on every change</td></tr>
+    <tr><th scope="row">Documentation</th><td data-label="Original (CS 465)">Code comments</td><td data-label="Enhanced (1.0.1)">README, architecture, security and testing guides, and a changelog</td></tr>
   </tbody>
 </table>
 </div>
@@ -108,15 +128,15 @@
   <p>Each stage is a tag in the repository, so its code can be browsed, compared with the stage before it, or downloaded exactly as it stood. The enhancement tags hold the code as submitted for each milestone.</p>
 </section>
 <div class="table-wrap is-wide">
-<table class="stages">
+<table class="stack stages">
   <thead><tr><th scope="col">Stage</th><th scope="col">What it added</th><th scope="col">Code</th></tr></thead>
   <tbody>
-    <tr><th scope="row">Original<br><code>cs465-original</code></th><td>Travlr Getaways as submitted for CS 465 (August 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/cs465-original">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/cs465-original.zip">Download</a></span></td></tr>
-    <tr><th scope="row">Enhancement One<br><code>enhancement-1-software-design</code></th><td>Roles, scoped access, the generic controller and configuration-driven interface, five school records (September 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-1-software-design">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/cs465-original...enhancement-1-software-design">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-1-software-design.zip">Download</a></span></td></tr>
-    <tr><th scope="row">Enhancement Two<br><code>enhancement-2-algorithms</code></th><td>Scheduling conflict detection: bounded index search and per-teacher lock (September 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-2-algorithms">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-1-software-design...enhancement-2-algorithms">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-2-algorithms.zip">Download</a></span></td></tr>
-    <tr><th scope="row">Enhancement Three<br><code>enhancement-3-databases</code></th><td>Aggregation-pipeline reports, exact money and database security (October 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-3-databases">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-2-algorithms...enhancement-3-databases">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-3-databases.zip">Download</a></span></td></tr>
-    <tr><th scope="row">Final release 1.0.0<br><code>v1.0.0</code></th><td>Travel features retired, accounts and sign-in rebuilt, continuous integration and end-to-end tests (October 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/v1.0.0">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-3-databases...v1.0.0">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/v1.0.0.zip">Download</a></span></td></tr>
-    <tr><th scope="row">Patch release 1.0.1<br><code>v1.0.1</code></th><td>Accounts stored at the original password work factor can sign in again; the documentation states counted figures only (October 2026)</td><td><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/v1.0.1">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/v1.0.0...v1.0.1">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/v1.0.1.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Original<br><code>cs465-original</code></th><td data-label="What it added">Travlr Getaways as submitted for CS 465 (August 2026)</td><td data-label="Code"><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/cs465-original">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/cs465-original.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Enhancement One<br><code>enhancement-1-software-design</code></th><td data-label="What it added">Roles, scoped access, the generic controller and configuration-driven interface, five school records (September 2026)</td><td data-label="Code"><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-1-software-design">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/cs465-original...enhancement-1-software-design">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-1-software-design.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Enhancement Two<br><code>enhancement-2-algorithms</code></th><td data-label="What it added">Scheduling conflict detection: bounded index search and per-teacher lock (September 2026)</td><td data-label="Code"><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-2-algorithms">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-1-software-design...enhancement-2-algorithms">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-2-algorithms.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Enhancement Three<br><code>enhancement-3-databases</code></th><td data-label="What it added">Aggregation-pipeline reports, exact money and database security (October 2026)</td><td data-label="Code"><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/enhancement-3-databases">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-2-algorithms...enhancement-3-databases">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/enhancement-3-databases.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Final release 1.0.0<br><code>v1.0.0</code></th><td data-label="What it added">Travel features retired, accounts and sign-in rebuilt, continuous integration and end-to-end tests (October 2026)</td><td data-label="Code"><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/v1.0.0">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/enhancement-3-databases...v1.0.0">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/v1.0.0.zip">Download</a></span></td></tr>
+    <tr><th scope="row">Patch release 1.0.1<br><code>v1.0.1</code></th><td data-label="What it added">Accounts stored at the original password work factor can sign in again; the documentation states counted figures only (October 2026)</td><td data-label="Code"><span class="link-stack"><a href="https://github.com/azamatsoliev/azamat-school-admin/tree/v1.0.1">Browse</a><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/v1.0.0...v1.0.1">Changes</a><a href="https://github.com/azamatsoliev/azamat-school-admin/archive/refs/tags/v1.0.1.zip">Download</a></span></td></tr>
   </tbody>
 </table>
 </div>
