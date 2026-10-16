@@ -1,17 +1,15 @@
-// Small enhancements; every page works without them.
+/*
+ * Azamat Soliev · CS 499 Computer Science Capstone ePortfolio
+ * Site behaviors. Each one is a small enhancement: every page works without them.
+ */
 (function () {
-  // On narrow screens the stage rail scrolls sideways; bring the current stage into view.
-  var rail = document.querySelector('.rail');
-  if (rail) {
-    var current = rail.querySelector('.is-current');
-    if (current && rail.scrollWidth > rail.clientWidth) {
-      rail.scrollLeft = Math.max(0, current.offsetLeft - (rail.clientWidth - current.offsetWidth) / 2);
-    }
-  }
+  'use strict';
 
-  // The menu on narrow screens is a native disclosure. Close it once a link is
-  // chosen (a link to a section of the same page would otherwise leave it
-  // open), when Escape is pressed, and when the page outside it is selected.
+  // ----- Menu (narrow screens) -----
+  // The menu is a native disclosure. Close it once a link is chosen (a link to
+  // a section of the same page would otherwise leave it open), when Escape is
+  // pressed, when the page outside it is selected, and when the window becomes
+  // wide enough to show the full navigation instead.
   var menu = document.querySelector('.menu');
   if (menu) {
     var summary = menu.querySelector('summary');
@@ -27,8 +25,61 @@
     document.addEventListener('click', function (event) {
       if (menu.open && !menu.contains(event.target)) menu.open = false;
     });
+    var wide = window.matchMedia('(min-width: 75rem)');
+    if (wide.addEventListener) {
+      wide.addEventListener('change', function () {
+        if (wide.matches) menu.open = false;
+      });
+    }
   }
 
+  // ----- Contents: mark the section being read -----
+  // The section whose heading has most recently passed under the header is the
+  // one being read. At the very bottom of the page the last section counts.
+  var contents = document.querySelector('.toc');
+  if (contents) {
+    var tocLinks = Array.prototype.slice.call(contents.querySelectorAll('a[href^="#"]'));
+    var sections = tocLinks.map(function (link) {
+      return document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    });
+    var activeLink = null;
+    var pending = false;
+
+    var markCurrent = function () {
+      pending = false;
+      var offset = (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 80) + 8;
+      var index = -1;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i] && sections[i].getBoundingClientRect().top - offset <= 0) index = i;
+      }
+      var root = document.documentElement;
+      if (index >= 0 && window.innerHeight + window.pageYOffset >= root.scrollHeight - 2) {
+        index = sections.length - 1;
+      }
+      var link = index >= 0 ? tocLinks[index] : null;
+      if (link === activeLink) return;
+      if (activeLink) {
+        activeLink.classList.remove('is-active');
+        activeLink.removeAttribute('aria-current');
+      }
+      if (link) {
+        link.classList.add('is-active');
+        link.setAttribute('aria-current', 'true');
+      }
+      activeLink = link;
+    };
+
+    window.addEventListener('scroll', function () {
+      if (!pending) {
+        pending = true;
+        window.requestAnimationFrame(markCurrent);
+      }
+    }, { passive: true });
+    window.addEventListener('resize', markCurrent);
+    markCurrent();
+  }
+
+  // ----- Tables shown as cards on phones -----
   // On phones, tables are restyled as stacks of cards. Some browsers stop
   // treating a restyled table as a table, so its roles are stated explicitly
   // and screen readers keep announcing each cell with its column heading.
@@ -41,16 +92,17 @@
     }
   });
 
-  // A table or figure wider than the screen scrolls inside its own box. Make that
-  // box reachable from the keyboard, and name it for screen readers, only when it
-  // actually scrolls. Above a figure or output that scrolls, say so.
+  // ----- Content wider than the screen -----
+  // A table or figure wider than the screen scrolls inside its own box. Make
+  // that box reachable from the keyboard, and name it for screen readers, only
+  // when it actually scrolls. Above a figure or output that scrolls, say so.
   var regions = document.querySelectorAll('.table-wrap, .figure-scroll');
   var scrollers = document.querySelectorAll('.figure-scroll, .console-scroll');
   var headings = Array.prototype.slice.call(document.querySelectorAll('main h1, main h2, main h3'));
 
   // Names each region after its chart title or the heading it sits under, so
   // every region has a distinct name.
-  function nameFor(region, used) {
+  var nameFor = function (region, used) {
     var title = region.querySelector('svg title');
     var base = title ? title.textContent : '';
     if (!base) {
@@ -66,15 +118,15 @@
     for (var n = 2; used[name]; n++) name = base + ' (' + n + ')';
     used[name] = true;
     return name;
-  }
+  };
 
-  function scrolls(box) {
+  var scrolls = function (box) {
     return box.scrollWidth > box.clientWidth + 1;
-  }
+  };
 
   // The hint repeats what the region's name already says, so it is hidden from
   // screen readers.
-  function hintFor(box) {
+  var hintFor = function (box) {
     var hint = box.previousElementSibling;
     if (!hint || !hint.classList.contains('scroll-hint')) {
       hint = document.createElement('p');
@@ -87,9 +139,9 @@
       box.parentNode.insertBefore(hint, box);
     }
     return hint;
-  }
+  };
 
-  function update() {
+  var update = function () {
     var used = {};
     for (var i = 0; i < regions.length; i++) {
       var region = regions[i];
@@ -105,63 +157,81 @@
     }
     for (var j = 0; j < scrollers.length; j++) {
       var box = scrollers[j];
-      var wide = box.offsetParent !== null && scrolls(box);
-      if (wide || box.previousElementSibling && box.previousElementSibling.classList.contains('scroll-hint')) {
-        hintFor(box).hidden = !wide;
+      var isWide = box.offsetParent !== null && scrolls(box);
+      if (isWide || (box.previousElementSibling && box.previousElementSibling.classList.contains('scroll-hint'))) {
+        hintFor(box).hidden = !isWide;
       }
     }
-  }
+  };
   update();
-  var timer;
+  var resizeTimer;
   window.addEventListener('resize', function () {
-    clearTimeout(timer);
-    timer = setTimeout(update, 150);
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(update, 150);
   });
 
-  // Final-release screenshots are added to the site after it is built. A
-  // screenshot whose file is missing hides itself, and a group of screenshots
-  // with nothing left to show hides too, so no page shows a broken image.
-  function hideShot(img) {
-    var figure = img.closest('figure');
-    if (figure) figure.hidden = true;
-    var node = figure && figure.parentElement;
-    while (node) {
-      if (node.hasAttribute('data-shot-group') && !node.querySelector('figure:not([hidden])')) {
-        node.hidden = true;
-      }
-      node = node.parentElement;
-    }
-  }
-  var shots = document.querySelectorAll('[data-final-shot] img');
-  for (var s = 0; s < shots.length; s++) {
-    if (shots[s].complete && shots[s].naturalWidth === 0) {
-      hideShot(shots[s]);
-    } else {
-      shots[s].addEventListener('error', function () { hideShot(this); });
-    }
-  }
+  // ----- Screenshot viewer -----
+  // A screenshot opens over the page instead of replacing it. Without this
+  // script, or with a modified click, the link still opens the image file.
+  var shotLinks = document.querySelectorAll('.shot-link');
+  if (shotLinks.length && typeof HTMLDialogElement === 'function') {
+    var viewer = document.createElement('dialog');
+    viewer.className = 'viewer';
+    viewer.setAttribute('aria-labelledby', 'viewer-caption');
+    viewer.innerHTML =
+      '<div class="viewer-bar">' +
+        '<p class="viewer-caption" id="viewer-caption"></p>' +
+        '<a class="viewer-open" target="_blank" rel="noopener">Open full size</a>' +
+        '<button class="viewer-close" type="button" aria-label="Close">' +
+          '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
+        '</button>' +
+      '</div>' +
+      '<div class="viewer-body" tabindex="0"><img alt=""></div>';
+    document.body.appendChild(viewer);
 
-  // Output from runs on a real MongoDB server, saved as text files after the
-  // build. Each block appears only once its file has loaded. Files saved by
-  // Windows PowerShell may be UTF-16, so the encoding is read from the file.
-  var outputs = document.querySelectorAll('[data-evidence]');
-  if (!window.fetch || !window.TextDecoder) return;
-  Array.prototype.forEach.call(outputs, function (block) {
-    fetch(block.getAttribute('data-evidence'), { cache: 'no-cache' })
-      .then(function (response) {
-        if (!response.ok) throw new Error('missing');
-        return response.arrayBuffer();
-      })
-      .then(function (buffer) {
-        var bytes = new Uint8Array(buffer);
-        var encoding = bytes[0] === 0xFF && bytes[1] === 0xFE ? 'utf-16le'
-          : bytes[0] === 0xFE && bytes[1] === 0xFF ? 'utf-16be' : 'utf-8';
-        var text = new TextDecoder(encoding).decode(buffer).replace(/\r\n/g, '\n').trim();
-        if (!text) return;
-        block.querySelector('code').textContent = text;
-        block.hidden = false;
-        update();
-      })
-      .catch(function () { /* not added yet: the block stays hidden */ });
-  });
+    var viewerImage = viewer.querySelector('img');
+    var viewerCaption = viewer.querySelector('.viewer-caption');
+    var viewerOpen = viewer.querySelector('.viewer-open');
+    var viewerBody = viewer.querySelector('.viewer-body');
+    var viewerClose = viewer.querySelector('.viewer-close');
+    var opener = null;
+
+    // The figure's caption, without the "select the image" hint.
+    var captionFor = function (link) {
+      var figure = link.closest('figure');
+      var caption = figure && figure.querySelector('figcaption');
+      if (!caption) return '';
+      var copy = caption.cloneNode(true);
+      var hint = copy.querySelector('.shot-hint');
+      if (hint) hint.parentNode.removeChild(hint);
+      return copy.textContent.replace(/\s+/g, ' ').trim();
+    };
+
+    Array.prototype.forEach.call(shotLinks, function (link) {
+      link.addEventListener('click', function (event) {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        var thumb = link.querySelector('img');
+        opener = link;
+        viewerImage.src = link.getAttribute('href');
+        viewerImage.alt = thumb ? thumb.alt : '';
+        viewerCaption.textContent = captionFor(link) || viewerImage.alt;
+        viewerOpen.href = link.getAttribute('href');
+        viewer.showModal();
+        viewerBody.scrollTop = 0;
+        viewerClose.focus();
+      });
+    });
+
+    viewerClose.addEventListener('click', function () { viewer.close(); });
+    // A click on the dimmed backdrop lands on the dialog itself.
+    viewer.addEventListener('click', function (event) {
+      if (event.target === viewer) viewer.close();
+    });
+    viewer.addEventListener('close', function () {
+      viewerImage.removeAttribute('src');
+      if (opener) opener.focus();
+      opener = null;
+    });
+  }
 })();

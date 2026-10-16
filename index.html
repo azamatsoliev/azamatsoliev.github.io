@@ -1,4 +1,8 @@
 <!doctype html>
+<!--
+  Azamat Soliev · CS 499 Computer Science Capstone ePortfolio
+  Home: professional self-assessment
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,77 +11,121 @@
 <meta name="description" content="Professional self-assessment and capstone ePortfolio of Azamat Soliev, full-stack software developer: one application, from a travel booking site to a school management platform.">
 <meta name="author" content="Azamat Soliev">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f6f4ee">
+<link rel="canonical" href="https://azamatsoliev.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Azamat Soliev · CS 499 ePortfolio">
 <meta property="og:title" content="Azamat Soliev | Computer Science ePortfolio">
 <meta property="og:description" content="Professional self-assessment and capstone ePortfolio of Azamat Soliev, full-stack software developer: one application, from a travel booking site to a school management platform.">
-<meta property="og:type" content="website">
+<meta property="og:url" content="https://azamatsoliev.github.io/">
+<meta property="og:image" content="https://azamatsoliev.github.io/assets/images/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Azamat Soliev, CS 499 Computer Science Capstone ePortfolio">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to main content</a>
+<!-- site-header -->
 <header class="site-header">
-  <div class="bar">
-    <a class="wordmark" href="index.html" aria-current="page">Azamat Soliev</a>
-    <p class="bar-links"><a href="index.html#self-assessment" class="is-current">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+  <div class="header-inner">
+    <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M6.5 24.5 16 16l9.5-8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="6.5" cy="24.5" r="3.5" fill="currentColor"/><circle cx="16" cy="16" r="3.5" fill="currentColor"/><circle class="mark-ring" cx="25.5" cy="7.5" r="4" stroke-width="2.5"/></svg><span class="brand-name">Azamat Soliev</span></a>
+    <nav class="steps-nav" aria-label="Portfolio">
+      <ol class="steps">
+        <li class="step is-current"><a href="index.html" aria-current="page"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Self-assessment</span></a></li>
+        <li class="step"><a href="code-review.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Code review</span></a></li>
+        <li class="step"><a href="artifact.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Artifact</span></a></li>
+        <li class="step"><a href="software-design.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Software design</span></a></li>
+        <li class="step"><a href="algorithms.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Algorithms</span></a></li>
+        <li class="step"><a href="databases.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Databases</span></a></li>
+      </ol>
+      <a class="steps-extra" href="index.html#files">Downloads</a>
+    </nav>
+    <a class="header-button contents-button" href="#contents">Contents</a>
     <details class="menu">
-      <summary class="menu-button"><span class="menu-icon" aria-hidden="true"></span><span>Menu</span></summary>
-      <nav class="menu-panel" aria-label="All pages">
-        <ul class="menu-list">
-          <li><a href="index.html#self-assessment" aria-current="page">Professional Self-Assessment</a></li>
-        </ul>
-        <p class="menu-heading">The application, stage by stage</p>
-        <ol class="menu-stages">
-          <li class="menu-stage"><a href="artifact.html#original"><span class="menu-stage-name">Original</span> <span class="menu-stage-note">CS 465</span></a></li>
-          <li class="menu-stage"><a href="code-review.html"><span class="menu-stage-name">Code review</span> <span class="menu-stage-note">Milestone One</span></a></li>
-          <li class="menu-stage"><a href="software-design.html"><span class="menu-stage-name">Software design</span> <span class="menu-stage-note">Enhancement One</span></a></li>
-          <li class="menu-stage"><a href="algorithms.html"><span class="menu-stage-name">Algorithms</span> <span class="menu-stage-note">Enhancement Two</span></a></li>
-          <li class="menu-stage"><a href="databases.html"><span class="menu-stage-name">Databases</span> <span class="menu-stage-note">Enhancement Three</span></a></li>
-          <li class="menu-stage"><a href="artifact.html#final"><span class="menu-stage-name">Final release</span> <span class="menu-stage-note">Version 1.0.1</span></a></li>
+      <summary class="header-button menu-button"><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menu</span></summary>
+      <nav class="menu-panel" aria-label="Portfolio pages">
+        <ol class="menu-steps">
+          <li class="menu-step is-current"><a href="index.html" aria-current="page"><span class="menu-num" aria-hidden="true">01</span><span class="menu-text"><span class="menu-name">Self-assessment</span> <span class="menu-note">Introduction</span></span></a></li>
+          <li class="menu-step"><a href="code-review.html"><span class="menu-num" aria-hidden="true">02</span><span class="menu-text"><span class="menu-name">Code review</span> <span class="menu-note">Milestone One</span></span></a></li>
+          <li class="menu-step"><a href="artifact.html"><span class="menu-num" aria-hidden="true">03</span><span class="menu-text"><span class="menu-name">Artifact</span> <span class="menu-note">Original and enhanced</span></span></a></li>
+          <li class="menu-step"><a href="software-design.html"><span class="menu-num" aria-hidden="true">04</span><span class="menu-text"><span class="menu-name">Software design</span> <span class="menu-note">Enhancement One</span></span></a></li>
+          <li class="menu-step"><a href="algorithms.html"><span class="menu-num" aria-hidden="true">05</span><span class="menu-text"><span class="menu-name">Algorithms</span> <span class="menu-note">Enhancement Two</span></span></a></li>
+          <li class="menu-step"><a href="databases.html"><span class="menu-num" aria-hidden="true">06</span><span class="menu-text"><span class="menu-name">Databases</span> <span class="menu-note">Enhancement Three</span></span></a></li>
         </ol>
-        <ul class="menu-list">
+        <ul class="menu-extra">
+          <li><a href="index.html#files">Downloads</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </details>
   </div>
-  
-<nav class="rail" aria-label="Portfolio stages">
-  <ol class="rail-list">
-    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span> <span class="rail-note">CS 465</span></a></li>
-    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span> <span class="rail-note">Milestone One</span></a></li>
-    <li class="rail-stage"><a href="software-design.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span> <span class="rail-note">Enhancement One</span></a></li>
-    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span> <span class="rail-note">Enhancement Two</span></a></li>
-    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span> <span class="rail-note">Enhancement Three</span></a></li>
-    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span> <span class="rail-note">Version 1.0.1</span></a></li>
-  </ol>
-</nav>
 </header>
+<!-- /site-header -->
 <main id="main" tabindex="-1">
 
 <section class="hero" aria-labelledby="name">
   <div class="hero-inner">
-    <h1 id="name">Azamat Soliev</h1>
-    <p class="hero-role">Full-stack software developer</p>
-    <p class="hero-lead">My capstone ePortfolio for the Bachelor of Science in Computer Science at Southern New Hampshire University, built around one MEAN stack application at every stage of its development.</p>
-    <ul class="contact-list hero-contacts">
-      <li><a href="mailto:azamatthefirst1@gmail.com"><span>azamatthefirst1@gmail.com</span></a></li>
-      <li><a href="https://www.linkedin.com/in/azamatsoliev"><span>LinkedIn</span></a></li>
-      <li><a href="https://github.com/azamatsoliev"><span>GitHub</span></a></li>
-    </ul>
+    <div class="hero-text">
+      <p class="eyebrow">CS 499 Capstone ePortfolio · Southern New Hampshire University · 2026</p>
+      <h1 id="name">Azamat Soliev</h1>
+      <p class="hero-role">Full-stack software developer</p>
+      <p class="hero-lead">My capstone ePortfolio for the Bachelor of Science in Computer Science at Southern New Hampshire University, built around one MEAN stack application at every stage of its development.</p>
+      <ul class="contact-list hero-contacts">
+        <li><a href="mailto:azamatthefirst1@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.8.3 7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>azamatthefirst1@gmail.com</span></a></li>
+        <li><a href="https://www.linkedin.com/in/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Zm2.3 6.9V18h2.6V9.9H6.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.3 4V18H14v-4.3c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3V18h2.6v-4.7c0-2.3-.5-4-3.2-4-1.3 0-2.1.7-2.5 1.4V9.9h-2.5Z" fill="currentColor"/></svg><span>LinkedIn</span></a></li>
+        <li><a href="https://github.com/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.4.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg><span>GitHub</span></a></li>
+      </ul>
+      <p class="hero-actions"><a class="button button-primary" href="#self-assessment">Read the self-assessment</a> <a class="button" href="#journey">Browse the work</a></p>
+    </div>
+    <div class="hero-portrait"><img src="assets/images/azamat-soliev.jpg" alt="Portrait of Azamat Soliev" width="480" height="600" fetchpriority="high" decoding="async"></div>
   </div>
+  <ul class="figures-strip" aria-label="Key results">
+    <li><a href="software-design.html"><span class="figure-value">3 roles</span><span class="figure-label">checked on every action, record and field</span></a></li>
+    <li><a href="algorithms.html"><span class="figure-value">O(log n + k)</span><span class="figure-label">conflict check, with k proven at most 32</span></a></li>
+    <li><a href="databases.html"><span class="figure-value">5 pipelines</span><span class="figure-label">MongoDB reports, exact to the cent</span></a></li>
+    <li><a href="artifact.html#final"><span class="figure-value">214 · 69 · 5</span><span class="figure-label">backend, interface and end-to-end tests</span></a></li>
+  </ul>
 </section>
 
-<article class="prose" aria-labelledby="self-assessment">
+<div class="page">
+<header class="page-head">
   <h2 id="self-assessment">Professional Self-Assessment</h2>
+  <div class="prose">
   <p>I am completing the Bachelor of Science in Computer Science at Southern New Hampshire University, and I am preparing for a career as a full-stack software developer: someone who can take a problem from a conversation with the people who have it, through the database and the server, to the screen they will use. This ePortfolio is the evidence for that claim. It centers on one application, Azamat School Admin, a management platform for small language schools that I rebuilt across this capstone from Travlr Getaways, a travel booking site I created in CS 465. It was built for a real case: a teacher of mine who opened a small language school was managing students, schedules, attendance and payments by hand. The sections below describe the strengths the program developed in me, the professional values those strengths rest on, and how the pieces of this portfolio fit together.</p>
-  
-<nav class="toc" aria-label="On this page">
+  </div>
+</header>
+
+<nav class="toc" id="contents" aria-label="On this page">
   <p class="toc-title">On this page</p>
-  <ul><li><a href="#collaborating-in-a-team-environment">Collaborating in a team environment</a></li><li><a href="#communicating-with-stakeholders">Communicating with stakeholders</a></li><li><a href="#data-structures-and-algorithms">Data structures and algorithms</a></li><li><a href="#software-engineering-and-databases">Software engineering and databases</a></li><li><a href="#security">Security</a></li><li><a href="#professional-goals-and-values">Professional goals and values</a></li><li><a href="#fit">How the artifacts fit together</a></li><li><a href="#outcomes">Course outcomes</a></li><li><a href="#files">Files for download</a></li></ul>
+  <ul>
+    <li><a href="#self-assessment">Professional Self-Assessment</a>
+      <ul>
+        <li><a href="#collaborating-in-a-team-environment">Collaborating in a team environment</a></li>
+        <li><a href="#communicating-with-stakeholders">Communicating with stakeholders</a></li>
+        <li><a href="#data-structures-and-algorithms">Data structures and algorithms</a></li>
+        <li><a href="#software-engineering-and-databases">Software engineering and databases</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#professional-goals-and-values">Professional goals and values</a></li>
+        <li><a href="#fit">How the artifacts fit together</a></li>
+      </ul>
+    </li>
+    <li><a href="#journey">The stages of the application</a></li>
+    <li><a href="#outcomes">Course outcomes</a></li>
+    <li><a href="#files">Files for download</a></li>
+  </ul>
 </nav>
+
+<div class="page-body">
+<div class="prose">
   <h3 id="strengths">Strengths developed across the program</h3>
   <h4 id="collaborating-in-a-team-environment">Collaborating in a team environment</h4>
 <p>My clearest team experience came in CS 250, Software Development Lifecycle, where I served as Scrum Master on the SNHU Travel project. I made sure the team’s retrospectives were a safe space for honest feedback, and when the product direction shifted midway to wellness travel, my emails kept the Product Owner and the Tester aligned while I updated the affected user stories. That project taught me that a team moves at the speed of its shared understanding. I brought the same habit to this capstone, although it was individual work, by building it the way a team builds software: the code review was recorded for peers and a manager, each source file opens with a header that states its purpose, the repository keeps the complete history from the original submission to the final release, and every change is checked automatically by continuous integration before anyone else has to rely on it.</p>
@@ -96,10 +144,10 @@
   <h3 id="fit">How the artifacts fit together</h3>
   <p>The artifacts in this portfolio are one application seen from four angles, in the order they were built. The code review, recorded before any enhancement, walks through Travlr Getaways as I submitted it for CS 465 and sets out the plan for each category. Enhancement One, software design and engineering, rebuilt the application as a role-based school platform around a generic controller and a configuration-driven interface. Enhancement Two, algorithms and data structures, added scheduling conflict detection with a proven bound on its cost. Enhancement Three, databases, added aggregation-pipeline reporting, exact money and database security. The final release retired the remaining travel features, closed public registration, rebuilt sign-in and connected every change to automated testing on a real MongoDB server.</p>
 <p>Each enhancement depends on the one before it: the conflict check attaches to the controller built in Enhancement One, and the reports depend on both the role model and the scheduling data. Together they cover the full stack and all five course outcomes. The pages that follow present the code review, the original and final versions of the application side by side, and each enhancement with its narrative, its evidence and a link to the code exactly as it stood at that stage.</p>
-</article>
+</div>
 
-<section class="map-section" aria-labelledby="map-title">
-  <h3 id="map-title" class="visually-hidden">The stages of the application</h3>
+<section class="journey" id="journey" aria-labelledby="map-title">
+  <h3 id="map-title" class="journey-title">The stages of the application</h3>
   <ol class="stage-map">
     <li class="stage-map-item">
       <p class="stage-when">August 2026</p>
@@ -157,9 +205,10 @@
 </table>
 </div>
 
-<section class="prose files" aria-labelledby="files">
+<section class="files" aria-labelledby="files">
   <h2 id="files">Files for download</h2>
-  <p>Static copies of everything in this portfolio. The code is also on GitHub, with every stage tagged: <a href="https://github.com/azamatsoliev/azamat-school-admin">azamatsoliev/azamat-school-admin</a>.</p>
+  <div class="prose"><p>Static copies of everything in this portfolio. The code is also on GitHub, with every stage tagged: <a href="https://github.com/azamatsoliev/azamat-school-admin">azamatsoliev/azamat-school-admin</a>.</p></div>
+<div class="table-wrap is-wide">
 <table class="stack file-table">
   <thead><tr><th scope="col">Item</th><th scope="col">Files</th></tr></thead>
   <tbody>
@@ -172,25 +221,52 @@
     <tr><th scope="row">Enhanced code: Azamat School Admin 1.0.1</th><td data-label="Files"><a href="assets/downloads/07_Enhanced_Code_Azamat_School_Admin_v1.0.1_Soliev.zip" download>ZIP archive</a> <span class="file-meta">ZIP, 335 KB</span></td></tr>
   </tbody>
 </table>
+</div>
 </section>
 
 <nav class="pager" aria-label="Previous and next pages">
-  <span></span>
-  <a class="pager-next" href="code-review.html"><span class="pager-label">Next</span><span class="pager-title">Code Review</span></a>
+  <span class="pager-gap"></span>
+  <a class="pager-link pager-next" href="code-review.html"><span class="pager-label">Next · Step 2 of 6</span><span class="pager-title">Code Review</span></a>
 </nav>
+</div>
+</div>
 </main>
 
+<!-- site-footer -->
 <footer class="site-footer" id="contact">
   <div class="footer-inner">
-    <p class="footer-name">Azamat Soliev</p>
-    <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
+    <div class="footer-about">
+      <p class="footer-name">Azamat Soliev</p>
+      <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
     <ul class="contact-list">
       <li><a href="mailto:azamatthefirst1@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.8.3 7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>azamatthefirst1@gmail.com</span></a></li>
       <li><a href="https://www.linkedin.com/in/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Zm2.3 6.9V18h2.6V9.9H6.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.3 4V18H14v-4.3c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3V18h2.6v-4.7c0-2.3-.5-4-3.2-4-1.3 0-2.1.7-2.5 1.4V9.9h-2.5Z" fill="currentColor"/></svg><span>linkedin.com/in/azamatsoliev</span></a></li>
       <li><a href="https://github.com/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.4.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg><span>github.com/azamatsoliev</span></a></li>
     </ul>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <p class="footer-heading">The portfolio</p>
+      <ol class="footer-list">
+          <li><a href="index.html">Self-assessment</a></li>
+          <li><a href="code-review.html">Code review</a></li>
+          <li><a href="artifact.html">Artifact</a></li>
+          <li><a href="software-design.html">Software design</a></li>
+          <li><a href="algorithms.html">Algorithms</a></li>
+          <li><a href="databases.html">Databases</a></li>
+      </ol>
+    </nav>
+    <div class="footer-more">
+      <p class="footer-heading">Files and code</p>
+      <ul class="footer-list">
+        <li><a href="index.html#files">Files for download</a></li>
+        <li><a href="https://github.com/azamatsoliev/azamat-school-admin">Application repository on GitHub</a></li>
+        <li><a href="https://youtu.be/u06APioXnVo">Code review on YouTube</a></li>
+      </ul>
+    </div>
   </div>
+  <div class="footer-base"><p>© 2026 Azamat Soliev</p></div>
 </footer>
+<!-- /site-footer -->
 <script src="assets/js/site.js" defer></script>
 </body>
 </html>

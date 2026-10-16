@@ -1,4 +1,8 @@
 <!doctype html>
+<!--
+  Azamat Soliev · CS 499 Computer Science Capstone ePortfolio
+  Enhancement One, software design and engineering
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,57 +11,70 @@
 <meta name="description" content="Roles, record scoping and a generic controller that turned a travel site into a role-based school platform.">
 <meta name="author" content="Azamat Soliev">
 <meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f6f4ee">
+<link rel="canonical" href="https://azamatsoliev.github.io/software-design.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Azamat Soliev · CS 499 ePortfolio">
 <meta property="og:title" content="Enhancement One: Software Design and Engineering | Azamat Soliev">
 <meta property="og:description" content="Roles, record scoping and a generic controller that turned a travel site into a role-based school platform.">
-<meta property="og:type" content="website">
+<meta property="og:url" content="https://azamatsoliev.github.io/software-design.html">
+<meta property="og:image" content="https://azamatsoliev.github.io/assets/images/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Azamat Soliev, CS 499 Computer Science Capstone ePortfolio">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/atkinson-hyperlegible-next-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to main content</a>
+<!-- site-header -->
 <header class="site-header">
-  <div class="bar">
-    <a class="wordmark" href="index.html">Azamat Soliev</a>
-    <p class="bar-links"><a href="index.html#self-assessment">Professional Self-Assessment</a> <a href="#contact">Contact</a></p>
+  <div class="header-inner">
+    <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M6.5 24.5 16 16l9.5-8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="6.5" cy="24.5" r="3.5" fill="currentColor"/><circle cx="16" cy="16" r="3.5" fill="currentColor"/><circle class="mark-ring" cx="25.5" cy="7.5" r="4" stroke-width="2.5"/></svg><span class="brand-name">Azamat Soliev</span></a>
+    <nav class="steps-nav" aria-label="Portfolio">
+      <ol class="steps">
+        <li class="step"><a href="index.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Self-assessment</span></a></li>
+        <li class="step"><a href="code-review.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Code review</span></a></li>
+        <li class="step"><a href="artifact.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Artifact</span></a></li>
+        <li class="step is-current"><a href="software-design.html" aria-current="page"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Software design</span></a></li>
+        <li class="step"><a href="algorithms.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Algorithms</span></a></li>
+        <li class="step"><a href="databases.html"><span class="step-dot" aria-hidden="true"></span><span class="step-label">Databases</span></a></li>
+      </ol>
+      <a class="steps-extra" href="index.html#files">Downloads</a>
+    </nav>
+    <a class="header-button contents-button" href="#contents">Contents</a>
     <details class="menu">
-      <summary class="menu-button"><span class="menu-icon" aria-hidden="true"></span><span>Menu</span></summary>
-      <nav class="menu-panel" aria-label="All pages">
-        <ul class="menu-list">
-          <li><a href="index.html#self-assessment">Professional Self-Assessment</a></li>
-        </ul>
-        <p class="menu-heading">The application, stage by stage</p>
-        <ol class="menu-stages">
-          <li class="menu-stage"><a href="artifact.html#original"><span class="menu-stage-name">Original</span> <span class="menu-stage-note">CS 465</span></a></li>
-          <li class="menu-stage"><a href="code-review.html"><span class="menu-stage-name">Code review</span> <span class="menu-stage-note">Milestone One</span></a></li>
-          <li class="menu-stage is-current"><a href="software-design.html" aria-current="page"><span class="menu-stage-name">Software design</span> <span class="menu-stage-note">Enhancement One</span></a></li>
-          <li class="menu-stage"><a href="algorithms.html"><span class="menu-stage-name">Algorithms</span> <span class="menu-stage-note">Enhancement Two</span></a></li>
-          <li class="menu-stage"><a href="databases.html"><span class="menu-stage-name">Databases</span> <span class="menu-stage-note">Enhancement Three</span></a></li>
-          <li class="menu-stage"><a href="artifact.html#final"><span class="menu-stage-name">Final release</span> <span class="menu-stage-note">Version 1.0.1</span></a></li>
+      <summary class="header-button menu-button"><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">Menu</span></summary>
+      <nav class="menu-panel" aria-label="Portfolio pages">
+        <ol class="menu-steps">
+          <li class="menu-step"><a href="index.html"><span class="menu-num" aria-hidden="true">01</span><span class="menu-text"><span class="menu-name">Self-assessment</span> <span class="menu-note">Introduction</span></span></a></li>
+          <li class="menu-step"><a href="code-review.html"><span class="menu-num" aria-hidden="true">02</span><span class="menu-text"><span class="menu-name">Code review</span> <span class="menu-note">Milestone One</span></span></a></li>
+          <li class="menu-step"><a href="artifact.html"><span class="menu-num" aria-hidden="true">03</span><span class="menu-text"><span class="menu-name">Artifact</span> <span class="menu-note">Original and enhanced</span></span></a></li>
+          <li class="menu-step is-current"><a href="software-design.html" aria-current="page"><span class="menu-num" aria-hidden="true">04</span><span class="menu-text"><span class="menu-name">Software design</span> <span class="menu-note">Enhancement One</span></span></a></li>
+          <li class="menu-step"><a href="algorithms.html"><span class="menu-num" aria-hidden="true">05</span><span class="menu-text"><span class="menu-name">Algorithms</span> <span class="menu-note">Enhancement Two</span></span></a></li>
+          <li class="menu-step"><a href="databases.html"><span class="menu-num" aria-hidden="true">06</span><span class="menu-text"><span class="menu-name">Databases</span> <span class="menu-note">Enhancement Three</span></span></a></li>
         </ol>
-        <ul class="menu-list">
+        <ul class="menu-extra">
+          <li><a href="index.html#files">Downloads</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </details>
   </div>
-  
-<nav class="rail" aria-label="Portfolio stages">
-  <ol class="rail-list">
-    <li class="rail-stage"><a href="artifact.html#original"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Original</span> <span class="rail-note">CS 465</span></a></li>
-    <li class="rail-stage"><a href="code-review.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Code review</span> <span class="rail-note">Milestone One</span></a></li>
-    <li class="rail-stage is-current"><a href="software-design.html" aria-current="page"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Software design</span> <span class="rail-note">Enhancement One</span></a></li>
-    <li class="rail-stage"><a href="algorithms.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Algorithms</span> <span class="rail-note">Enhancement Two</span></a></li>
-    <li class="rail-stage"><a href="databases.html"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Databases</span> <span class="rail-note">Enhancement Three</span></a></li>
-    <li class="rail-stage"><a href="artifact.html#final"><span class="rail-dot" aria-hidden="true"></span><span class="rail-name">Final release</span> <span class="rail-note">Version 1.0.1</span></a></li>
-  </ol>
-</nav>
 </header>
+<!-- /site-header -->
 <main id="main" tabindex="-1">
 
-<header class="page-head prose">
+<div class="page">
+<header class="page-head has-facts">
+  <p class="eyebrow">Step 4 of 6 · Milestone Two</p>
   <h1>Enhancement One: Software Design and Engineering</h1>
   <p class="lead">The original application had one kind of user, who was either signed in or not. This enhancement changed its structure: three roles with checks on every action, record and field, five school records served by one generic controller and one configuration-driven screen, and the defects from the code review corrected.</p>
   
@@ -69,14 +86,27 @@
   <div><dt>Changes from the original</dt><dd><a href="https://github.com/azamatsoliev/azamat-school-admin/compare/cs465-original...enhancement-1-software-design">Compare on GitHub</a></dd></div>
   <div><dt>Narrative</dt><dd><span class="link-stack"><span><a href="assets/downloads/03_Narrative_Enhancement_One_Software_Design_Soliev.docx" download>Word document</a> <span class="file-meta">DOCX, 15 KB</span></span><span><a href="assets/downloads/03_Narrative_Enhancement_One_Software_Design_Soliev.pdf" download>PDF</a> <span class="file-meta">PDF, 46 KB</span></span></span></dd></div>
 </dl>
-  
-<nav class="toc" aria-label="On this page">
-  <p class="toc-title">On this page</p>
-  <ul><li><a href="#changes">What changed</a></li><li><a href="#evidence">Evidence</a></li><li><a href="#narrative">Narrative</a></li><li><a href="#artifact-description">Artifact description</a></li><li><a href="#course-outcomes">Course outcomes</a></li><li><a href="#reflection-on-the-process">Reflection on the process</a></li><li><a href="#incorporating-feedback">Incorporating feedback</a></li></ul>
-</nav>
 </header>
 
-<section class="prose" aria-labelledby="changes">
+<nav class="toc" id="contents" aria-label="On this page">
+  <p class="toc-title">On this page</p>
+  <ul>
+    <li><a href="#changes">What changed</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+    <li><a href="#narrative">Narrative</a>
+      <ul>
+        <li><a href="#artifact-description">Artifact description</a></li>
+        <li><a href="#justification-for-inclusion">Justification for inclusion</a></li>
+        <li><a href="#course-outcomes">Course outcomes</a></li>
+        <li><a href="#reflection-on-the-process">Reflection on the process</a></li>
+        <li><a href="#incorporating-feedback">Incorporating feedback</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<div class="page-body">
+<section class="prose prose-wide" aria-labelledby="changes">
   <h2 id="changes">What changed</h2>
   <ul class="changes">
     <li><strong>One controller, five records.</strong> A generic controller factory on the server and one configuration-driven component in Angular serve students, teachers, class sessions, payments and attendance. A sixth kind of record needs a schema and two short descriptions, one for the server and one for the interface. In the original, the trip alone had twenty-one files of its own.</li>
@@ -109,24 +139,24 @@
   </li>
 </ol>
 <p class="flow-result">The query that reaches MongoDB already carries all three answers, so a record the caller may not see is never loaded.</p></div>
-  <figcaption>Every request answers three questions before any data is read. The rules are declared once, in <code>app_api/config/entities.js</code>, and applied by the controller factory to every kind of record.</figcaption>
+  <figcaption><span class="fig-num">Figure 1</span>Every request answers three questions before any data is read. The rules are declared once, in <code>app_api/config/entities.js</code>, and applied by the controller factory to every kind of record.</figcaption>
 </figure>
-<div class="shot-pair" data-shot-group>
-<figure class="shot ">
+<div class="shot-pair">
+<figure class="shot">
   <a class="shot-link" href="assets/images/screens/original-admin-login.webp"><img src="assets/images/screens/original-admin-login.webp" alt="The original sign-in screen, with fields for name, email address and password." width="1280" height="800" loading="lazy" decoding="async"></a>
   <figcaption>Before: the original sign-in asked for a name the server never read, and showed nothing for a wrong password.</figcaption>
 </figure>
-<figure class="shot shot-final " data-final-shot>
-  <a class="shot-link" href="assets/images/screens/final/01-sign-in.png"><img src="assets/images/screens/final/01-sign-in.png" alt="The rebuilt Azamat School Admin sign-in screen, with email address and password fields." width="1280" height="800" decoding="async"></a>
+<figure class="shot shot-final">
+  <a class="shot-link" href="assets/images/screens/final/01-sign-in.png"><img src="assets/images/screens/final/01-sign-in.png" alt="The rebuilt Azamat School Admin sign-in screen, with email address and password fields." width="1280" height="800" loading="lazy" decoding="async"></a>
   <figcaption>After: the rebuilt sign-in asks only for what it uses. A signed-out visitor who opens any page is brought here, then returned to that page. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
 </figure></div>
-<div class="shot-pair" data-shot-group>
-<figure class="shot shot-final " data-final-shot>
-  <a class="shot-link" href="assets/images/screens/final/02-owner-home.png"><img src="assets/images/screens/final/02-owner-home.png" alt="The owner’s home page, offering students, teachers, class sessions, payments, attendance and reports." width="1280" height="800" decoding="async"></a>
+<div class="shot-pair">
+<figure class="shot shot-final">
+  <a class="shot-link" href="assets/images/screens/final/02-owner-home.png"><img src="assets/images/screens/final/02-owner-home.png" alt="The owner’s home page, offering students, teachers, class sessions, payments, attendance and reports." width="1280" height="800" loading="lazy" decoding="async"></a>
   <figcaption>The owner is offered every section of the school. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
 </figure>
-<figure class="shot shot-final " data-final-shot>
-  <a class="shot-link" href="assets/images/screens/final/07-teacher-home.png"><img src="assets/images/screens/final/07-teacher-home.png" alt="A teacher’s home page, offering only class sessions, attendance and reports." width="1280" height="800" decoding="async"></a>
+<figure class="shot shot-final">
+  <a class="shot-link" href="assets/images/screens/final/07-teacher-home.png"><img src="assets/images/screens/final/07-teacher-home.png" alt="A teacher’s home page, offering only class sessions, attendance and reports." width="1280" height="800" loading="lazy" decoding="async"></a>
   <figcaption>A teacher is offered only their lessons, attendance and attendance sheet. The server enforces the same limits. <span class="shot-hint">Select the image to see the full page.</span></figcaption>
 </figure></div>
 </section>
@@ -157,22 +187,48 @@
 </section>
 
 <nav class="pager" aria-label="Previous and next pages">
-  <a class="pager-prev" href="artifact.html"><span class="pager-label">Previous</span><span class="pager-title">The Artifact: Original and Enhanced</span></a>
-  <a class="pager-next" href="algorithms.html"><span class="pager-label">Next</span><span class="pager-title">Enhancement Two: Algorithms and Data Structures</span></a>
+  <a class="pager-link pager-prev" href="artifact.html"><span class="pager-label">Previous · Step 3 of 6</span><span class="pager-title">The Artifact: Original and Enhanced</span></a>
+  <a class="pager-link pager-next" href="algorithms.html"><span class="pager-label">Next · Step 5 of 6</span><span class="pager-title">Enhancement Two: Algorithms and Data Structures</span></a>
 </nav>
+</div>
+</div>
 </main>
 
+<!-- site-footer -->
 <footer class="site-footer" id="contact">
   <div class="footer-inner">
-    <p class="footer-name">Azamat Soliev</p>
-    <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
+    <div class="footer-about">
+      <p class="footer-name">Azamat Soliev</p>
+      <p class="footer-role">Full-stack software developer. Computer science capstone, Southern New Hampshire University, 2026.</p>
     <ul class="contact-list">
       <li><a href="mailto:azamatthefirst1@gmail.com"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.8.3 7.2 5.4 7.2-5.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>azamatthefirst1@gmail.com</span></a></li>
       <li><a href="https://www.linkedin.com/in/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 3h15A1.5 1.5 0 0 1 21 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3Zm2.3 6.9V18h2.6V9.9H6.8Zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm3.3 4V18H14v-4.3c0-1.1.2-2.2 1.6-2.2 1.4 0 1.4 1.3 1.4 2.3V18h2.6v-4.7c0-2.3-.5-4-3.2-4-1.3 0-2.1.7-2.5 1.4V9.9h-2.5Z" fill="currentColor"/></svg><span>linkedin.com/in/azamatsoliev</span></a></li>
       <li><a href="https://github.com/azamatsoliev"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5a9.5 9.5 0 0 0-3 18.5c.5.1.7-.2.7-.5v-1.8c-2.6.6-3.2-1.1-3.2-1.1-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .8 1.5 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.2.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.4.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.3 4.6.3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A9.5 9.5 0 0 0 12 2.5Z" fill="currentColor"/></svg><span>github.com/azamatsoliev</span></a></li>
     </ul>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <p class="footer-heading">The portfolio</p>
+      <ol class="footer-list">
+          <li><a href="index.html">Self-assessment</a></li>
+          <li><a href="code-review.html">Code review</a></li>
+          <li><a href="artifact.html">Artifact</a></li>
+          <li><a href="software-design.html">Software design</a></li>
+          <li><a href="algorithms.html">Algorithms</a></li>
+          <li><a href="databases.html">Databases</a></li>
+      </ol>
+    </nav>
+    <div class="footer-more">
+      <p class="footer-heading">Files and code</p>
+      <ul class="footer-list">
+        <li><a href="index.html#files">Files for download</a></li>
+        <li><a href="https://github.com/azamatsoliev/azamat-school-admin">Application repository on GitHub</a></li>
+        <li><a href="https://youtu.be/u06APioXnVo">Code review on YouTube</a></li>
+      </ul>
+    </div>
   </div>
+  <div class="footer-base"><p>© 2026 Azamat Soliev</p></div>
 </footer>
+<!-- /site-footer -->
 <script src="assets/js/site.js" defer></script>
 </body>
 </html>
